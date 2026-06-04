@@ -7,21 +7,27 @@ import { Wine, GlassWater, Users, GraduationCap } from 'lucide-react';
 const Services = () => {
   const containerRef = useRef(null);
 
-  // העברנו את הרישום לתוך ההוק עצמו - הכי בטוח נגד קריסות
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.from('.service-card', {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 85%', // מתחיל את האנימציה קצת יותר מוקדם
+    // השתמשנו ב-fromTo - הפתרון לבעיית ה"מסך הריק לפני רענון"
+    gsap.fromTo('.service-card', 
+      { 
+        y: 50, 
+        opacity: 0 
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 85%',
+        }
       }
-    });
+    );
   }, { scope: containerRef });
 
   const services = [
@@ -32,14 +38,23 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" ref={containerRef} style={{ margin: '6rem auto', width: '100%', maxWidth: '1200px', padding: '0 20px' }}>
+    <section id="services" ref={containerRef} style={{ 
+      margin: '6rem auto', 
+      width: '100%', 
+      maxWidth: '1200px', 
+      padding: '0 20px',
+      boxSizing: 'border-box',
+      overflow: 'hidden'
+    }}>
       <h2 style={{ textAlign: 'center', fontSize: 'clamp(2rem, 5vw, 3rem)', marginBottom: '3rem', color: '#fff' }}>
         השירותים <span style={{ color: '#ff9e5e' }}>שלנו</span>
       </h2>
 
+      {/* החלפנו לפריסת Flex עמידה שמתאימה למסכים שונים בלי להישבר */}
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
         gap: '2rem'
       }}>
         {services.map((service, idx) => (
@@ -50,7 +65,6 @@ const Services = () => {
   );
 };
 
-// רכיב פנימי שמנהל את הכרטיסייה ואת ה-Hover בצורה בטוחה ללא קריסות
 const ServiceCard = ({ service }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -60,7 +74,10 @@ const ServiceCard = ({ service }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        padding: '2.5rem 2rem',
+        flex: '1 1 250px',
+        maxWidth: '350px', // מונע מהכרטיסיות להימתח יותר מדי במסך רחב
+        boxSizing: 'border-box',
+        padding: '2.5rem 1.5rem',
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
