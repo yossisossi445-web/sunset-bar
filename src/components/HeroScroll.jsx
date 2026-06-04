@@ -173,21 +173,22 @@ const HeroScroll = () => {
           alignItems: 'center', justifyContent: 'center', pointerEvents: 'none'
         }}>
           
-          {/* הדיב של הכותרת הראשית עם העיצוב החדש */}
           <div ref={text1Ref} style={{ position: 'absolute', textAlign: 'center', padding: '0 20px' }}>
             <h1 style={{ 
               fontSize: 'clamp(4rem, 10vw, 9rem)', 
               fontFamily: 'var(--font-heading)', 
               fontWeight: 900, 
-              letterSpacing: '0.05em', 
+              letterSpacing: '0.03em', 
               margin: 0, 
               lineHeight: 1.1,
-              // גרדיאנט שנותן תחושה תלת מימדית מבריקה (בהיר למעלה, כתום עמוק למטה)
-              background: 'linear-gradient(180deg, #fff3c4 0%, #ff9e5e 40%, #cc4a00 100%)',
+              // אפקט גרדיאנט קעור/רדיאלי שנותן תחושת נפח עגולה ו"בלונית" של אור וצל
+              background: 'radial-gradient(circle at top center, #ffffff 10%, #ffbe85 45%, #cc4a00 85%, #7a1f00 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              // יצירת אפקט זוהר כפול: אור כתום מסביב לטקסט + צל שחור עמוק מתחת
-              filter: 'drop-shadow(0px 0px 20px rgba(255, 158, 94, 0.8)) drop-shadow(0px 15px 15px rgba(0,0,0,0.9))'
+              // קו מתאר עדין ומבריק להפרדה מוחלטת מהרקע
+              WebkitTextStroke: '1px rgba(255, 230, 200, 0.3)',
+              // שילוב שכבות צל: זוהר רך + צל עמוק וחד שיוצר בידול מוחלט ומקפיץ את הטקסט קדימה
+              filter: 'drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.7)) drop-shadow(0px 0px 25px rgba(255, 120, 40, 0.65))'
             }}>
               Sunset Bar
             </h1>
