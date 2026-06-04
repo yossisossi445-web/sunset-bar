@@ -12,7 +12,7 @@ const About = () => {
         flexWrap: 'wrap'
       }}>
         <div style={{ flex: '1 1 300px', borderRadius: '16px', overflow: 'hidden' }}>
-          <img src="/images/profile.png" alt="Reem Smila" style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} />
+          <img src="/frames/images/profile.png" alt="Reem Smila" style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} />
         </div>
         <div style={{ flex: '2 1 400px', textAlign: 'right' }}>
           <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }} className="text-gradient">
