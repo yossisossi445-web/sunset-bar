@@ -173,7 +173,7 @@ const HeroScroll = () => {
           alignItems: 'center', justifyContent: 'center', pointerEvents: 'none'
         }}>
           
-          {/* הדיב של הכותרת הראשית עם העיצוב התלת-מימדי החדש */}
+          {/* הדיב של הכותרת הראשית עם תיקון הרינדור ואפקט ה-3D הנקי */}
           <div ref={text1Ref} style={{ position: 'absolute', textAlign: 'center', padding: '0 20px' }}>
             <h1 style={{ 
               fontSize: 'clamp(4rem, 10vw, 9rem)', 
@@ -181,15 +181,23 @@ const HeroScroll = () => {
               fontWeight: 900, 
               letterSpacing: '0.05em', 
               margin: 0, 
-              lineHeight: 1.1,
-              // הגרדיאנט החדש עם אפקט הברק (השתקפות האור) למעלה
-              background: 'linear-gradient(180deg, #ffffff 0%, #ffb347 25%, #ff7b00 60%, #8b0000 100%)',
+              lineHeight: 1.2,
+              // גרדיאנט חלק ועשיר שמדמה השתקפות של זכוכית/בלון מבריק
+              background: 'linear-gradient(180deg, #ffffff 0%, #ffbe76 30%, #ff7b00 65%, #992200 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              // המסגרת הלבנה שחותכת ומפרידה את הטקסט מהרקע
-              WebkitTextStroke: '1.5px rgba(255, 255, 255, 0.9)',
-              // יצירת הנפח: שתי צלליות ליצירת עובי (אחת כתומה ואחת חומה), הילה זוהרת, וצל שחור עמוק
-              filter: 'drop-shadow(0px 3px 0px #c24100) drop-shadow(0px 7px 0px #591600) drop-shadow(0px 0px 20px rgba(255, 120, 50, 0.6)) drop-shadow(0px 15px 25px rgba(0,0,0,0.95))'
+              // יצירת נפח תלת מימדי אמיתי ומדורג על ידי שכבות של צל קשיח, ללא קווי מתאר שבורים
+              textShadow: `
+                0px 1px 0px #cc4400,
+                0px 2px 0px #b33600,
+                0px 3px 0px #992e00,
+                0px 4px 0px #802500,
+                0px 5px 0px #661d00,
+                0px 6px 0px #4d1400,
+                0px 7px 8px rgba(0, 0, 0, 0.6),
+                0px 12px 20px rgba(0, 0, 0, 0.4),
+                0px 0px 30px rgba(255, 123, 0, 0.3)
+              `
             }}>
               Sunset Bar
             </h1>
