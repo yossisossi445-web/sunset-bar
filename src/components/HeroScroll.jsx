@@ -167,7 +167,6 @@ const HeroScroll = () => {
           alignItems: 'center', justifyContent: 'center', pointerEvents: 'none'
         }}>
           
-          {/* הכותרת הראשה - 3D טהור ובטוח שלעולם לא יישבר */}
           <div ref={text1Ref} style={{ position: 'absolute', textAlign: 'center', padding: '0 20px', width: '100%' }}>
             <h1 style={{ 
               fontSize: 'clamp(4rem, 10vw, 9rem)', 
@@ -176,22 +175,22 @@ const HeroScroll = () => {
               letterSpacing: '0.05em', 
               margin: 0, 
               lineHeight: 1.1,
-              // הגרדיאנט הבלוני המואר
-              background: 'linear-gradient(180deg, #ffffff 0%, #fff6e5 10%, #ffe0a3 25%, #ffc96b 40%, #ff9d22 60%, #ff7300 80%, #cc3d00 100%)',
+              // גרדיאנט זהב מבריק וזוהר, בלי צבעים "כבויים"
+              background: 'linear-gradient(180deg, #ffffff 0%, #ffebb3 15%, #ffcc00 40%, #e69500 65%, #ff6a00 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              // בלוק ה-3D שמחושב פיקסל אחר פיקסל - יציב לחלוטין גם כשהטקסט יורד שורה
+              // צלליות עומק מברונזה/זהב עמוק + הילת זהב כפולה שמושכת את העין
               textShadow: `
-                0px 1px 0px #b83700,
-                0px 2px 0px #a33100,
-                0px 3px 0px #8f2b00,
-                0px 4px 0px #7a2500,
-                0px 5px 0px #661f00,
-                0px 6px 0px #521800,
-                0px 7px 0px #3d1200,
-                0px 8px 0px #290c00,
-                0px 15px 25px rgba(0,0,0,0.6),
-                0px 0px 40px rgba(255, 115, 0, 0.4)
+                0px 1px 0px #c47c00,
+                0px 2px 0px #b06f00,
+                0px 3px 0px #9c6200,
+                0px 4px 0px #885600,
+                0px 5px 0px #744900,
+                0px 6px 0px #603d00,
+                0px 7px 0px #4c3000,
+                0px 15px 25px rgba(0,0,0,0.8),
+                0px 0px 25px rgba(255, 215, 0, 0.7),
+                0px 0px 60px rgba(255, 140, 0, 0.5)
               `
             }}>
               Sunset Bar
