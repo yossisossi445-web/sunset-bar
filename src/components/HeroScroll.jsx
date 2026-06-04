@@ -173,14 +173,28 @@ const HeroScroll = () => {
           alignItems: 'center', justifyContent: 'center', pointerEvents: 'none'
         }}>
           
-          <div ref={text1Ref} style={{ position: 'absolute', textAlign: 'center', textShadow: '0 0 20px rgba(0,0,0,0.8)' }}>
-            <h1 style={{ fontSize: 'clamp(4rem, 10vw, 9rem)', fontFamily: 'var(--font-heading)', fontWeight: 900, letterSpacing: '0.05em', margin: 0, lineHeight: 1 }} className="text-gradient">
+          {/* הדיב של הכותרת הראשית עם העיצוב החדש */}
+          <div ref={text1Ref} style={{ position: 'absolute', textAlign: 'center', padding: '0 20px' }}>
+            <h1 style={{ 
+              fontSize: 'clamp(4rem, 10vw, 9rem)', 
+              fontFamily: 'var(--font-heading)', 
+              fontWeight: 900, 
+              letterSpacing: '0.05em', 
+              margin: 0, 
+              lineHeight: 1.1,
+              // גרדיאנט שנותן תחושה תלת מימדית מבריקה (בהיר למעלה, כתום עמוק למטה)
+              background: 'linear-gradient(180deg, #fff3c4 0%, #ff9e5e 40%, #cc4a00 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              // יצירת אפקט זוהר כפול: אור כתום מסביב לטקסט + צל שחור עמוק מתחת
+              filter: 'drop-shadow(0px 0px 20px rgba(255, 158, 94, 0.8)) drop-shadow(0px 15px 15px rgba(0,0,0,0.9))'
+            }}>
               Sunset Bar
             </h1>
           </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0, textShadow: '0 0 20px rgba(0,0,0,0.8)' }}>
-            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', margin: 0 }}>להפוך כל אירוע לחוויה</h2>
+            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', margin: 0, color: '#fff' }}>להפוך כל אירוע לחוויה</h2>
             <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', color: 'var(--accent-amber)', fontWeight: 700 }}>
               של צבעים, טעמים ואנרגיות
             </p>
