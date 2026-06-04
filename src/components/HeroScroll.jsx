@@ -172,25 +172,26 @@ const HeroScroll = () => {
               fontSize: 'clamp(4rem, 10vw, 9rem)', 
               fontFamily: 'var(--font-heading)', 
               fontWeight: 900, 
-              letterSpacing: '0.05em', 
+              letterSpacing: '0.04em', 
               margin: 0, 
               lineHeight: 1.1,
-              // גרדיאנט זהב מבריק וזוהר, בלי צבעים "כבויים"
-              background: 'linear-gradient(180deg, #ffffff 0%, #ffebb3 15%, #ffcc00 40%, #e69500 65%, #ff6a00 100%)',
+              // אפקט שבירת האור: לבן בוהק בהתחלה ובאמצע ליצירת השתקפות תלת-מימדית של בלון מבריק
+              background: 'linear-gradient(180deg, #ffffff 0%, #fff0a3 18%, #ffbb00 44%, #ffffff 46%, #ff8800 52%, #e64d00 82%, #801a00 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              // צלליות עומק מברונזה/זהב עמוק + הילת זהב כפולה שמושכת את העין
+              // שכבות צל שלוקחות את הזהב והכתום ומותחות אותם לעומק, יחד עם זוהר סופר חזק ומבודד
               textShadow: `
-                0px 1px 0px #c47c00,
-                0px 2px 0px #b06f00,
-                0px 3px 0px #9c6200,
-                0px 4px 0px #885600,
-                0px 5px 0px #744900,
-                0px 6px 0px #603d00,
-                0px 7px 0px #4c3000,
-                0px 15px 25px rgba(0,0,0,0.8),
-                0px 0px 25px rgba(255, 215, 0, 0.7),
-                0px 0px 60px rgba(255, 140, 0, 0.5)
+                0px 1px 0px #d64500,
+                0px 2px 0px #bd3d00,
+                0px 3px 0px #a43500,
+                0px 4px 0px #8b2d00,
+                0px 5px 0px #732500,
+                0px 6px 0px #5a1d00,
+                0px 7px 0px #411500,
+                0px 8px 0px #290d00,
+                0px 12px 25px rgba(0,0,0,0.85),
+                0px 0px 30px rgba(255, 204, 0, 0.8),
+                0px 0px 70px rgba(255, 102, 0, 0.6)
               `
             }}>
               Sunset Bar
