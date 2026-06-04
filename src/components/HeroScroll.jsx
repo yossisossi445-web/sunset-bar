@@ -167,97 +167,35 @@ const HeroScroll = () => {
           alignItems: 'center', justifyContent: 'center', pointerEvents: 'none'
         }}>
           
-          {/* הכותרת התלת מימדית החדשה עם השכבות */}
-          <div
-            ref={text1Ref}
-            style={{
-              position: 'absolute',
-              textAlign: 'center',
-              padding: '0 20px',
-              transform: 'perspective(1200px) rotateX(10deg)',
-            }}
-          >
-            <div
-              style={{
-                position: 'relative',
-                display: 'inline-block',
-              }}
-            >
-              {/* שכבת צל אחורית (מוסתרת מקוראי מסך) */}
-              <h1
-                aria-hidden="true"
-                style={{
-                  position: 'absolute',
-                  top: '10px',
-                  left: '8px',
-                  margin: 0,
-                  fontSize: 'clamp(4rem, 10vw, 9rem)',
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 900,
-                  letterSpacing: '0.05em',
-                  lineHeight: 1.1,
-                  color: '#2b0c00',
-                  zIndex: 1,
-                  filter: 'blur(3px)',
-                }}
-              >
-                Sunset Bar
-              </h1>
-
-              {/* שכבת גוף תלת-מימד (מוסתרת מקוראי מסך) */}
-              <h1
-                aria-hidden="true"
-                style={{
-                  position: 'absolute',
-                  top: '4px',
-                  left: '4px',
-                  margin: 0,
-                  fontSize: 'clamp(4rem, 10vw, 9rem)',
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 900,
-                  letterSpacing: '0.05em',
-                  lineHeight: 1.1,
-                  color: '#852800',
-                  zIndex: 2,
-                }}
-              >
-                Sunset Bar
-              </h1>
-
-              {/* השכבה העליית (הטקסט הראשי האמיתי) */}
-              <h1
-                style={{
-                  position: 'relative',
-                  zIndex: 3,
-                  margin: 0,
-                  lineHeight: 1.1,
-                  fontSize: 'clamp(4rem, 10vw, 9rem)',
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 900,
-                  letterSpacing: '0.05em',
-                  background: `
-                    linear-gradient(
-                      180deg,
-                      #ffffff 0%,
-                      #fff6e5 10%,
-                      #ffe0a3 25%,
-                      #ffc96b 40%,
-                      #ff9d22 60%,
-                      #ff7300 80%,
-                      #cc3d00 100%
-                    )
-                  `,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: `
-                    0px 10px 25px rgba(0,0,0,0.5),
-                    0px 0px 45px rgba(255,120,0,0.4)
-                  `,
-                }}
-              >
-                Sunset Bar
-              </h1>
-            </div>
+          {/* הכותרת הראשה - 3D טהור ובטוח שלעולם לא יישבר */}
+          <div ref={text1Ref} style={{ position: 'absolute', textAlign: 'center', padding: '0 20px', width: '100%' }}>
+            <h1 style={{ 
+              fontSize: 'clamp(4rem, 10vw, 9rem)', 
+              fontFamily: 'var(--font-heading)', 
+              fontWeight: 900, 
+              letterSpacing: '0.05em', 
+              margin: 0, 
+              lineHeight: 1.1,
+              // הגרדיאנט הבלוני המואר
+              background: 'linear-gradient(180deg, #ffffff 0%, #fff6e5 10%, #ffe0a3 25%, #ffc96b 40%, #ff9d22 60%, #ff7300 80%, #cc3d00 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              // בלוק ה-3D שמחושב פיקסל אחר פיקסל - יציב לחלוטין גם כשהטקסט יורד שורה
+              textShadow: `
+                0px 1px 0px #b83700,
+                0px 2px 0px #a33100,
+                0px 3px 0px #8f2b00,
+                0px 4px 0px #7a2500,
+                0px 5px 0px #661f00,
+                0px 6px 0px #521800,
+                0px 7px 0px #3d1200,
+                0px 8px 0px #290c00,
+                0px 15px 25px rgba(0,0,0,0.6),
+                0px 0px 40px rgba(255, 115, 0, 0.4)
+              `
+            }}>
+              Sunset Bar
+            </h1>
           </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0, textShadow: '0 0 20px rgba(0,0,0,0.8)' }}>
