@@ -17,7 +17,6 @@ const HeroScroll = () => {
   const [progress, setProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
-  // Preload images
   useEffect(() => {
     const loadedImages = [];
     let loadedCount = 0;
@@ -48,7 +47,6 @@ const HeroScroll = () => {
 
     const render = (index) => {
       if (images[index]) {
-        // Clear and draw image covering the canvas
         context.clearRect(0, 0, canvas.width, canvas.height);
         
         const img = images[index];
@@ -72,7 +70,6 @@ const HeroScroll = () => {
       }
     };
 
-    // Draw first frame
     render(0);
 
     const animationState = { frame: 0 };
@@ -91,14 +88,12 @@ const HeroScroll = () => {
       }
     });
 
-    // Handle Resize
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       render(Math.min(FRAME_COUNT - 1, Math.floor(ScrollTrigger.getById('heroScroll')?.progress * FRAME_COUNT || 0)));
     });
 
-    // Text Animations
     gsap.to(text1Ref.current, {
       opacity: 0,
       y: -50,
@@ -135,7 +130,6 @@ const HeroScroll = () => {
       }
     });
 
-    // Fade out canvas at the end
     gsap.to(canvasRef.current, {
       opacity: 0.3,
       scrollTrigger: {
@@ -173,34 +167,97 @@ const HeroScroll = () => {
           alignItems: 'center', justifyContent: 'center', pointerEvents: 'none'
         }}>
           
-          {/* הדיב של הכותרת הראשית עם תיקון הרינדור ואפקט ה-3D הנקי */}
-          <div ref={text1Ref} style={{ position: 'absolute', textAlign: 'center', padding: '0 20px' }}>
-            <h1 style={{ 
-              fontSize: 'clamp(4rem, 10vw, 9rem)', 
-              fontFamily: 'var(--font-heading)', 
-              fontWeight: 900, 
-              letterSpacing: '0.05em', 
-              margin: 0, 
-              lineHeight: 1.2,
-              // גרדיאנט חלק ועשיר שמדמה השתקפות של זכוכית/בלון מבריק
-              background: 'linear-gradient(180deg, #ffffff 0%, #ffbe76 30%, #ff7b00 65%, #992200 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              // יצירת נפח תלת מימדי אמיתי ומדורג על ידי שכבות של צל קשיח, ללא קווי מתאר שבורים
-              textShadow: `
-                0px 1px 0px #cc4400,
-                0px 2px 0px #b33600,
-                0px 3px 0px #992e00,
-                0px 4px 0px #802500,
-                0px 5px 0px #661d00,
-                0px 6px 0px #4d1400,
-                0px 7px 8px rgba(0, 0, 0, 0.6),
-                0px 12px 20px rgba(0, 0, 0, 0.4),
-                0px 0px 30px rgba(255, 123, 0, 0.3)
-              `
-            }}>
-              Sunset Bar
-            </h1>
+          {/* הכותרת התלת מימדית החדשה עם השכבות */}
+          <div
+            ref={text1Ref}
+            style={{
+              position: 'absolute',
+              textAlign: 'center',
+              padding: '0 20px',
+              transform: 'perspective(1200px) rotateX(10deg)',
+            }}
+          >
+            <div
+              style={{
+                position: 'relative',
+                display: 'inline-block',
+              }}
+            >
+              {/* שכבת צל אחורית (מוסתרת מקוראי מסך) */}
+              <h1
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '8px',
+                  margin: 0,
+                  fontSize: 'clamp(4rem, 10vw, 9rem)',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 900,
+                  letterSpacing: '0.05em',
+                  lineHeight: 1.1,
+                  color: '#2b0c00',
+                  zIndex: 1,
+                  filter: 'blur(3px)',
+                }}
+              >
+                Sunset Bar
+              </h1>
+
+              {/* שכבת גוף תלת-מימד (מוסתרת מקוראי מסך) */}
+              <h1
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  top: '4px',
+                  left: '4px',
+                  margin: 0,
+                  fontSize: 'clamp(4rem, 10vw, 9rem)',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 900,
+                  letterSpacing: '0.05em',
+                  lineHeight: 1.1,
+                  color: '#852800',
+                  zIndex: 2,
+                }}
+              >
+                Sunset Bar
+              </h1>
+
+              {/* השכבה העליית (הטקסט הראשי האמיתי) */}
+              <h1
+                style={{
+                  position: 'relative',
+                  zIndex: 3,
+                  margin: 0,
+                  lineHeight: 1.1,
+                  fontSize: 'clamp(4rem, 10vw, 9rem)',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 900,
+                  letterSpacing: '0.05em',
+                  background: `
+                    linear-gradient(
+                      180deg,
+                      #ffffff 0%,
+                      #fff6e5 10%,
+                      #ffe0a3 25%,
+                      #ffc96b 40%,
+                      #ff9d22 60%,
+                      #ff7300 80%,
+                      #cc3d00 100%
+                    )
+                  `,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textShadow: `
+                    0px 10px 25px rgba(0,0,0,0.5),
+                    0px 0px 45px rgba(255,120,0,0.4)
+                  `,
+                }}
+              >
+                Sunset Bar
+              </h1>
+            </div>
           </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0, textShadow: '0 0 20px rgba(0,0,0,0.8)' }}>
