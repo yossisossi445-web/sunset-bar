@@ -21,9 +21,9 @@ const Features = () => {
   }, { scope: containerRef });
 
   const features = [
-    { title: "עיצוב אישי", img: "/images/feature-1.jpg" },
-    { title: "חומרי גלם טריים", img: "/images/feature-2.jpg" },
-    { title: "אווירה מחשמלת", img: "/images/feature-3.jpg" },
+    { title: "עיצוב אישי", img: "/frames/images/feature-1.jpg" },
+    { title: "חומרי גלם טריים", img: "/frames/images/feature-2.jpg" },
+    { title: "אווירה מחשמלת", img: "/frames/images/feature-3.jpg" },
   ];
 
   return (
