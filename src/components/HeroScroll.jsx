@@ -164,24 +164,31 @@ const HeroScroll = () => {
           alignItems: 'center', justifyContent: 'center', pointerEvents: 'none'
         }}>
           
-          <div ref={text1Ref} style={{ position: 'absolute', textAlign: 'center', padding: '0 20px', width: '100%' }}>
-            <h1 style={{ 
-              fontSize: 'clamp(4rem, 10vw, 9rem)', 
-              fontFamily: 'var(--font-heading)', 
-              fontWeight: 900, 
-              letterSpacing: '0.02em', 
-              margin: 0, 
-              lineHeight: 1.1,
-              color: '#ffffff', 
-              textShadow: `
-                0px 0px 10px rgba(255, 255, 255, 0.5),
-                0px 0px 20px rgba(251, 191, 36, 0.6),
-                0px 0px 40px rgba(234, 88, 12, 0.4)
-              `
-            }}>
-              Sunset<br />Bar
-            </h1>
-          </div>
+          <div ref={text1Ref} style={{ 
+           position: 'absolute', 
+           top: '20vh', 
+           width: '100%',
+           textAlign: 'center',
+           padding: '0 20px',
+           boxSizing: 'border-box'
+        }}>
+          <h1 style={{ 
+            fontSize: 'clamp(4rem, 10vw, 9rem)', 
+            fontFamily: 'var(--font-heading)', 
+            fontWeight: 900, 
+            letterSpacing: '0.02em', 
+            margin: 0, 
+            lineHeight: 1.1,
+            color: '#ffffff', 
+            textShadow: `
+              0px 0px 10px rgba(255, 255, 255, 0.5),
+              0px 0px 20px rgba(251, 191, 36, 0.6),
+              0px 0px 40px rgba(234, 88, 12, 0.4)
+            `
+          }}>
+            Sunset<br />Bar
+          </h1>
+        </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0 }}>
             <h2 style={{ 
