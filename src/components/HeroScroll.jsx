@@ -175,30 +175,51 @@ const HeroScroll = () => {
               letterSpacing: '0.05em', 
               margin: 0, 
               lineHeight: 1.1,
-              // גרדיאנט זהב-מראה יוקרתי עם שבירת אור מבריקה במרכז האלמנט
-              background: 'linear-gradient(180deg, #ffffff 0%, #fff7c2 20%, #ffd700 40%, #ffffff 44%, #ffd700 48%, #b8860b 80%, #544105 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              // אפקט תלת מימד יציב בגווני זהב עמוקים וברונזה + הילת גלואו זהובה עוצמתית
+              color: '#ffffff', // צבע הבסיס של הניאון הוא לבן בוהק
+              // הילת ניאון ורודה עוצמתית שבנויה משכבות של אור
               textShadow: `
-                0px 1px 0px #caa11f,
-                0px 2px 0px #b58f1a,
-                0px 3px 0px #a17e15,
-                0px 4px 0px #8c6d10,
-                0px 5px 0px #785d0c,
-                0px 6px 0px #544105,
-                0px 15px 30px rgba(0,0,0,0.85),
-                0px 0px 30px rgba(255, 220, 0, 0.85),
-                0px 0px 70px rgba(255, 150, 0, 0.5)
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #ff00aa,
+                0 0 40px #ff00aa,
+                0 0 80px #ff00aa,
+                0 0 100px #ff00aa,
+                0 0 120px #ff00aa
               `
             }}>
               Sunset Bar
             </h1>
           </div>
 
-          <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0, textShadow: '0 0 20px rgba(0,0,0,0.8)' }}>
-            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', margin: 0, color: '#fff' }}>להפוך כל אירוע לחוויה</h2>
-            <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', color: 'var(--accent-amber)', fontWeight: 700 }}>
+          <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0 }}>
+            <h2 style={{ 
+              fontSize: 'clamp(2rem, 5vw, 4rem)', 
+              margin: 0, 
+              color: '#ffffff',
+              // הילת ניאון תכלת-כחול זוהרת לכותרת המשנה
+              textShadow: `
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #00e5ff,
+                0 0 40px #00e5ff,
+                0 0 80px #00e5ff
+              `
+            }}>
+              להפוך כל אירוע לחוויה
+            </h2>
+            <p style={{ 
+              fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
+              color: '#ffffff', // הוחלף מכתום ענבר ללבן כדי שהניאון יעבוד טוב
+              fontWeight: 700,
+              // אותה הילת ניאון תכלת לשורת הטקסט הקטנה יותר
+              textShadow: `
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #00e5ff,
+                0 0 40px #00e5ff,
+                0 0 80px #00e5ff
+              `
+            }}>
               של צבעים, טעמים ואנרגיות
             </p>
           </div>
