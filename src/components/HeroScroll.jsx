@@ -175,15 +175,12 @@ const HeroScroll = () => {
               letterSpacing: '0.05em', 
               margin: 0, 
               lineHeight: 1.1,
-              // צבע הכותרת - שמנת חמה וסמיכה, לא לבן טהור
               color: '#fff9ea', 
-              // אפקט שמדמה נפח ותבליט יחד עם הילת שקיעה רחבה
+              // צמצום משמעותי של ההילה - עכשיו היא צמודה, עדינה ולא מסנוורת
               textShadow: `
-                0px -2px 2px #ffffff, /* הברקה עליונה שנותנת תחושת תבליט */
-                0px 2px 3px #b35900,  /* צללית תחתונה כהה לעובי */
-                0px 0px 15px rgba(255, 160, 0, 0.8), /* הילת זהב קרובה */
-                0px 0px 45px rgba(255, 90, 0, 0.6),  /* הילת כתום בינונית */
-                0px 0px 90px rgba(200, 40, 0, 0.5)   /* הילת אווירה רחבה */
+                0px 2px 2px rgba(0, 0, 0, 0.4),
+                0px 0px 8px rgba(255, 140, 0, 0.8),
+                0px 0px 18px rgba(220, 60, 0, 0.5)
               `
             }}>
               Sunset Bar
@@ -194,14 +191,9 @@ const HeroScroll = () => {
             <h2 style={{ 
               fontSize: 'clamp(2rem, 5vw, 4rem)', 
               margin: 0, 
-              // צבע לבן חזק ושטוח, שונה מהשמנת של הכותרת
               color: '#ffffff', 
-              // הילה צמודה, צרה ועוצמתית ממש כמו תאורה אחורית
-              textShadow: `
-                0px 0px 8px rgba(255, 120, 0, 0.95),
-                0px 0px 18px rgba(255, 80, 0, 0.8),
-                0px 0px 30px rgba(200, 40, 0, 0.5)
-              `
+              // נקי לחלוטין. רק צל שחור עדין כדי להפריד מהרקע המצולם
+              textShadow: '0px 2px 6px rgba(0, 0, 0, 0.7)'
             }}>
               להפוך כל אירוע לחוויה
             </h2>
@@ -209,11 +201,8 @@ const HeroScroll = () => {
               fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
               color: '#ffffff', 
               fontWeight: 700,
-              textShadow: `
-                0px 0px 6px rgba(255, 120, 0, 0.95),
-                0px 0px 15px rgba(255, 80, 0, 0.8),
-                0px 0px 25px rgba(200, 40, 0, 0.5)
-              `
+              // נקי לחלוטין. שומר על אותו קו של הכותרת שמעליו
+              textShadow: '0px 2px 6px rgba(0, 0, 0, 0.7)'
             }}>
               של צבעים, טעמים ואנרגיות
             </p>
