@@ -175,15 +175,14 @@ const HeroScroll = () => {
               letterSpacing: '0.05em', 
               margin: 0, 
               lineHeight: 1.1,
-              color: '#ffffff', // ליבה לבנה-בוהקת כמו מנורה
-              // הילת שקיעה מדויקת - מתחיל בלבן, עובר לצהוב, ומסתיים בכתום-אש
+              // צבע האותיות כמו בתמונה - שמנת/לבן חמים
+              color: '#fffbf2', 
+              // הילת האור הרכה והחמימה (Aura) שמוקרנת מאחורי האותיות
               textShadow: `
-                0 0 5px #ffffff,
-                0 0 10px #ffffff,
-                0 0 20px #ffe600,
-                0 0 40px #ffaa00,
-                0 0 80px #ff5500,
-                0 0 120px #ff5500
+                0px 0px 10px rgba(255, 170, 0, 0.8),
+                0px 0px 25px rgba(255, 100, 0, 0.8),
+                0px 0px 50px rgba(220, 60, 0, 0.6),
+                0px 0px 90px rgba(200, 40, 0, 0.4)
               `
             }}>
               Sunset Bar
@@ -194,29 +193,23 @@ const HeroScroll = () => {
             <h2 style={{ 
               fontSize: 'clamp(2rem, 5vw, 4rem)', 
               margin: 0, 
-              color: '#ffffff',
-              // אותה הילה חמימה גם לטקסט המשני
+              color: '#fffbf2', // תואם לכותרת
               textShadow: `
-                0 0 5px #ffffff,
-                0 0 10px #ffe600,
-                0 0 20px #ffaa00,
-                0 0 40px #ff5500,
-                0 0 80px #ff5500
+                0px 0px 8px rgba(255, 170, 0, 0.8),
+                0px 0px 20px rgba(255, 100, 0, 0.8),
+                0px 0px 40px rgba(220, 60, 0, 0.6)
               `
             }}>
               להפוך כל אירוע לחוויה
             </h2>
             <p style={{ 
               fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
-              color: '#ffffff', 
+              color: '#fffbf2', // תואם לכותרת
               fontWeight: 700,
-              // הילה חמימה לטקסט הקטן
               textShadow: `
-                0 0 5px #ffffff,
-                0 0 10px #ffe600,
-                0 0 20px #ffaa00,
-                0 0 40px #ff5500,
-                0 0 80px #ff5500
+                0px 0px 8px rgba(255, 170, 0, 0.8),
+                0px 0px 20px rgba(255, 100, 0, 0.8),
+                0px 0px 40px rgba(220, 60, 0, 0.6)
               `
             }}>
               של צבעים, טעמים ואנרגיות
