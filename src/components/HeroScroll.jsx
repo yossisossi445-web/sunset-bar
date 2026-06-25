@@ -179,7 +179,7 @@ const HeroScroll = () => {
                 0px 0px 40px rgba(234, 88, 12, 0.4)
               `
             }}>
-              סאנסט בר
+              Sunset Bar
             </h1>
           </div>
 
