@@ -166,7 +166,7 @@ const HeroScroll = () => {
           
           <div ref={text1Ref} style={{ 
            position: 'absolute', 
-           top: '20vh', 
+           top: '60vh', 
            width: '100%',
            textAlign: 'center',
            padding: '0 20px',
