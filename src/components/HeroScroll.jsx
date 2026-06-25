@@ -175,14 +175,15 @@ const HeroScroll = () => {
               letterSpacing: '0.05em', 
               margin: 0, 
               lineHeight: 1.1,
-              // צבע האותיות כמו בתמונה - שמנת/לבן חמים
-              color: '#fffbf2', 
-              // הילת האור הרכה והחמימה (Aura) שמוקרנת מאחורי האותיות
+              // צבע הכותרת - שמנת חמה וסמיכה, לא לבן טהור
+              color: '#fff9ea', 
+              // אפקט שמדמה נפח ותבליט יחד עם הילת שקיעה רחבה
               textShadow: `
-                0px 0px 10px rgba(255, 170, 0, 0.8),
-                0px 0px 25px rgba(255, 100, 0, 0.8),
-                0px 0px 50px rgba(220, 60, 0, 0.6),
-                0px 0px 90px rgba(200, 40, 0, 0.4)
+                0px -2px 2px #ffffff, /* הברקה עליונה שנותנת תחושת תבליט */
+                0px 2px 3px #b35900,  /* צללית תחתונה כהה לעובי */
+                0px 0px 15px rgba(255, 160, 0, 0.8), /* הילת זהב קרובה */
+                0px 0px 45px rgba(255, 90, 0, 0.6),  /* הילת כתום בינונית */
+                0px 0px 90px rgba(200, 40, 0, 0.5)   /* הילת אווירה רחבה */
               `
             }}>
               Sunset Bar
@@ -193,23 +194,25 @@ const HeroScroll = () => {
             <h2 style={{ 
               fontSize: 'clamp(2rem, 5vw, 4rem)', 
               margin: 0, 
-              color: '#fffbf2', // תואם לכותרת
+              // צבע לבן חזק ושטוח, שונה מהשמנת של הכותרת
+              color: '#ffffff', 
+              // הילה צמודה, צרה ועוצמתית ממש כמו תאורה אחורית
               textShadow: `
-                0px 0px 8px rgba(255, 170, 0, 0.8),
-                0px 0px 20px rgba(255, 100, 0, 0.8),
-                0px 0px 40px rgba(220, 60, 0, 0.6)
+                0px 0px 8px rgba(255, 120, 0, 0.95),
+                0px 0px 18px rgba(255, 80, 0, 0.8),
+                0px 0px 30px rgba(200, 40, 0, 0.5)
               `
             }}>
               להפוך כל אירוע לחוויה
             </h2>
             <p style={{ 
               fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
-              color: '#fffbf2', // תואם לכותרת
+              color: '#ffffff', 
               fontWeight: 700,
               textShadow: `
-                0px 0px 8px rgba(255, 170, 0, 0.8),
-                0px 0px 20px rgba(255, 100, 0, 0.8),
-                0px 0px 40px rgba(220, 60, 0, 0.6)
+                0px 0px 6px rgba(255, 120, 0, 0.95),
+                0px 0px 15px rgba(255, 80, 0, 0.8),
+                0px 0px 25px rgba(200, 40, 0, 0.5)
               `
             }}>
               של צבעים, טעמים ואנרגיות
