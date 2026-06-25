@@ -175,16 +175,15 @@ const HeroScroll = () => {
               letterSpacing: '0.05em', 
               margin: 0, 
               lineHeight: 1.1,
-              color: '#ffffff', // צבע הבסיס של הניאון הוא לבן בוהק
-              // הילת ניאון ורודה עוצמתית שבנויה משכבות של אור
+              color: '#ffffff', // ליבה לבנה-בוהקת כמו מנורה
+              // הילת שקיעה מדויקת - מתחיל בלבן, עובר לצהוב, ומסתיים בכתום-אש
               textShadow: `
-                0 0 5px #fff,
-                0 0 10px #fff,
-                0 0 20px #ff00aa,
-                0 0 40px #ff00aa,
-                0 0 80px #ff00aa,
-                0 0 100px #ff00aa,
-                0 0 120px #ff00aa
+                0 0 5px #ffffff,
+                0 0 10px #ffffff,
+                0 0 20px #ffe600,
+                0 0 40px #ffaa00,
+                0 0 80px #ff5500,
+                0 0 120px #ff5500
               `
             }}>
               Sunset Bar
@@ -196,28 +195,28 @@ const HeroScroll = () => {
               fontSize: 'clamp(2rem, 5vw, 4rem)', 
               margin: 0, 
               color: '#ffffff',
-              // הילת ניאון תכלת-כחול זוהרת לכותרת המשנה
+              // אותה הילה חמימה גם לטקסט המשני
               textShadow: `
-                0 0 5px #fff,
-                0 0 10px #fff,
-                0 0 20px #00e5ff,
-                0 0 40px #00e5ff,
-                0 0 80px #00e5ff
+                0 0 5px #ffffff,
+                0 0 10px #ffe600,
+                0 0 20px #ffaa00,
+                0 0 40px #ff5500,
+                0 0 80px #ff5500
               `
             }}>
               להפוך כל אירוע לחוויה
             </h2>
             <p style={{ 
               fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
-              color: '#ffffff', // הוחלף מכתום ענבר ללבן כדי שהניאון יעבוד טוב
+              color: '#ffffff', 
               fontWeight: 700,
-              // אותה הילת ניאון תכלת לשורת הטקסט הקטנה יותר
+              // הילה חמימה לטקסט הקטן
               textShadow: `
-                0 0 5px #fff,
-                0 0 10px #fff,
-                0 0 20px #00e5ff,
-                0 0 40px #00e5ff,
-                0 0 80px #00e5ff
+                0 0 5px #ffffff,
+                0 0 10px #ffe600,
+                0 0 20px #ffaa00,
+                0 0 40px #ff5500,
+                0 0 80px #ff5500
               `
             }}>
               של צבעים, טעמים ואנרגיות
