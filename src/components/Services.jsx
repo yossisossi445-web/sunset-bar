@@ -10,8 +10,7 @@ const Services = () => {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // השתמשנו ב-fromTo - הפתרון לבעיית ה"מסך הריק לפני רענון"
-    gsap.fromTo('.service-card', 
+    gsap.fromTo('.service-card-wrapper', 
       { 
         y: 50, 
         opacity: 0 
@@ -50,7 +49,6 @@ const Services = () => {
         השירותים <span style={{ color: '#ff9e5e' }}>שלנו</span>
       </h2>
 
-      {/* החלפנו לפריסת Flex עמידה שמתאימה למסכים שונים בלי להישבר */}
       <div style={{
         display: 'flex',
         flexWrap: 'wrap',
@@ -69,46 +67,50 @@ const ServiceCard = ({ service }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className="service-card"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        flex: '1 1 250px',
-        maxWidth: '350px', // מונע מהכרטיסיות להימתח יותר מדי במסך רחב
-        boxSizing: 'border-box',
-        padding: '2.5rem 1.5rem',
-        textAlign: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '1rem',
-        background: 'rgba(255, 255, 255, 0.05)',
-        backdropFilter: 'blur(16px)',
-        borderRadius: '16px',
-        border: isHovered ? '1px solid rgba(212, 175, 55, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
-        transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
-        boxShadow: isHovered ? '0 15px 35px rgba(255, 158, 94, 0.15)' : 'none',
-        transition: 'all 0.4s ease',
-        cursor: 'pointer'
-      }}
-    >
-      <div style={{
-        background: 'rgba(255, 158, 94, 0.1)',
-        width: '72px',
-        height: '72px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: '50%',
-        marginBottom: '0.5rem',
-        flexShrink: 0
-      }}>
-        {service.icon}
-      </div>
+    // העטיפה החיצונית - GSAP שולט בה, בלי שום פקודות CSS של Transition
+    <div className="service-card-wrapper" style={{ flex: '1 1 250px', maxWidth: '350px' }}>
+      
+      {/* הקלף הפנימי - העכבר וה-CSS שולטים פה */}
+      <div
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{
+          height: '100%',
+          boxSizing: 'border-box',
+          padding: '2.5rem 1.5rem',
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1rem',
+          background: 'rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(16px)',
+          borderRadius: '16px',
+          border: isHovered ? '1px solid rgba(212, 175, 55, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+          transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
+          boxShadow: isHovered ? '0 15px 35px rgba(255, 158, 94, 0.15)' : 'none',
+          transition: 'all 0.4s ease',
+          cursor: 'pointer'
+        }}
+      >
+        <div style={{
+          background: 'rgba(255, 158, 94, 0.1)',
+          width: '72px',
+          height: '72px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: '50%',
+          marginBottom: '0.5rem',
+          flexShrink: 0
+        }}>
+          {service.icon}
+        </div>
 
-      <h3 style={{ fontSize: '1.5rem', margin: 0, color: '#fff' }}>{service.title}</h3>
-      <p style={{ color: '#ccc', lineHeight: 1.6, margin: 0 }}>{service.desc}</p>
+        <h3 style={{ fontSize: '1.5rem', margin: 0, color: '#fff' }}>{service.title}</h3>
+        <p style={{ color: '#ccc', lineHeight: 1.6, margin: 0 }}>{service.desc}</p>
+      </div>
+      
     </div>
   );
 };
