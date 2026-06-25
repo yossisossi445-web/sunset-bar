@@ -72,8 +72,6 @@ const HeroScroll = () => {
 
     render(0);
 
-    const animationState = { frame: 0 };
-
     ScrollTrigger.create({
       trigger: sectionRef.current,
       start: "top top",
@@ -161,7 +159,6 @@ const HeroScroll = () => {
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
         
-        {/* Overlays */}
         <div style={{
           position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
           alignItems: 'center', justifyContent: 'center', pointerEvents: 'none'
@@ -172,18 +169,17 @@ const HeroScroll = () => {
               fontSize: 'clamp(4rem, 10vw, 9rem)', 
               fontFamily: 'var(--font-heading)', 
               fontWeight: 900, 
-              letterSpacing: '0.05em', 
+              letterSpacing: '0.02em', 
               margin: 0, 
               lineHeight: 1.1,
-              color: '#fff9ea', 
-              // צמצום משמעותי של ההילה - עכשיו היא צמודה, עדינה ולא מסנוורת
+              color: '#ffffff', 
               textShadow: `
-                0px 2px 2px rgba(0, 0, 0, 0.4),
-                0px 0px 8px rgba(255, 140, 0, 0.8),
-                0px 0px 18px rgba(220, 60, 0, 0.5)
+                0px 0px 10px rgba(255, 255, 255, 0.5),
+                0px 0px 20px rgba(251, 191, 36, 0.6),
+                0px 0px 40px rgba(234, 88, 12, 0.4)
               `
             }}>
-              Sunset Bar
+              סאנסט בר
             </h1>
           </div>
 
@@ -191,9 +187,8 @@ const HeroScroll = () => {
             <h2 style={{ 
               fontSize: 'clamp(2rem, 5vw, 4rem)', 
               margin: 0, 
-              color: '#ffffff', 
-              // נקי לחלוטין. רק צל שחור עדין כדי להפריד מהרקע המצולם
-              textShadow: '0px 2px 6px rgba(0, 0, 0, 0.7)'
+              color: '#fcd34d', 
+              textShadow: '0px 2px 8px rgba(0, 0, 0, 0.8)'
             }}>
               להפוך כל אירוע לחוויה
             </h2>
@@ -201,7 +196,6 @@ const HeroScroll = () => {
               fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
               color: '#ffffff', 
               fontWeight: 700,
-              // נקי לחלוטין. שומר על אותו קו של הכותרת שמעליו
               textShadow: '0px 2px 6px rgba(0, 0, 0, 0.7)'
             }}>
               של צבעים, טעמים ואנרגיות
