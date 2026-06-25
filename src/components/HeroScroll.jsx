@@ -171,7 +171,7 @@ const HeroScroll = () => {
               fontWeight: 900, 
               letterSpacing: '0.02em', 
               margin: 0, 
-              lineHeight: 1.1,
+              lineHeight: 0.8,
               color: '#ffffff', 
               textShadow: `
                 0px 0px 10px rgba(255, 255, 255, 0.5),
