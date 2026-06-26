@@ -201,7 +201,6 @@ const HeroScroll = () => {
             Sunset Bar
           </h1>
           
-          {/* הכפתור החדש והיוקרתי שהבאת */}
           <button
             onClick={scrollToContact}
             onMouseEnter={(e) => {
@@ -286,19 +285,32 @@ const HeroScroll = () => {
         </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0 }}>
+            {/* הכותרת המשנית עם העיצוב החדש */}
             <h2 style={{ 
               fontSize: 'clamp(2rem, 5vw, 4rem)', 
               margin: 0, 
-              color: '#ffffff', 
-              textShadow: '0px 2px 6px rgba(0, 0, 0, 0.7)'
+              fontWeight: 900,
+              color: '#f7e6cf', 
+              textShadow: `
+                0 1px 0 rgba(255,255,255,0.45),
+                0 2px 0 rgba(225,200,170,0.9),
+                0 4px 10px rgba(0,0,0,0.28)
+              `
             }}>
               להפוך כל אירוע לחוויה
             </h2>
+            
+            {/* הטקסט הקטן יותר עם העיצוב החדש */}
             <p style={{ 
               fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
-              color: '#ffffff', 
+              color: '#f7e6cf', 
               fontWeight: 700,
-              textShadow: '0px 2px 6px rgba(0, 0, 0, 0.7)'
+              marginTop: '10px',
+              textShadow: `
+                0 1px 0 rgba(255,255,255,0.35),
+                0 2px 0 rgba(225,200,170,0.7),
+                0 3px 8px rgba(0,0,0,0.25)
+              `
             }}>
               של צבעים, טעמים ואנרגיות
             </p>
