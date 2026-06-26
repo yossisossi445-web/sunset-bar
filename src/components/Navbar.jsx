@@ -1,11 +1,20 @@
 import React from 'react';
 
 const Navbar = () => {
-  const handleScroll = (e, targetId) => {
+  // הפונקציה החדשה מקבלת פרמטר שלישי - offsetPixels (כמות הפיקסלים לתיקון המיקום)
+  const handleScroll = (e, targetId, offsetPixels = 0) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
+    
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
+      // חישוב המיקום המדויק של הסקשן בעמוד כולו
+      const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+      
+      // גלילה למיקום של הסקשן, פלוס תיקון הפיקסלים שלנו שמושך אותו למרכז
+      window.scrollTo({
+        top: elementPosition + offsetPixels,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -48,10 +57,11 @@ const Navbar = () => {
               margin: 0,
               padding: 0
             }}>
-              <li><a href="#about" onClick={(e) => handleScroll(e, 'about')} style={linkStyle}>הסיפור שלי</a></li>
-              <li><a href="#services" onClick={(e) => handleScroll(e, 'services')} style={linkStyle}>השירותים</a></li>
-              <li><a href="#gallery" onClick={(e) => handleScroll(e, 'gallery')} style={linkStyle}>גלריה</a></li>
-              <li><a href="#contact" onClick={(e) => handleScroll(e, 'contact')} style={linkStyle}>צור קשר</a></li>
+              {/* השתמשנו במספרים שליליים כדי לעצור את הגלילה לפני הלמעלה, כדי שזה יישב בול במרכז */}
+              <li><a href="#about" onClick={(e) => handleScroll(e, 'about', -200)} style={linkStyle}>הסיפור שלי</a></li>
+              <li><a href="#services" onClick={(e) => handleScroll(e, 'services', -200)} style={linkStyle}>השירותים</a></li>
+              <li><a href="#gallery" onClick={(e) => handleScroll(e, 'gallery', -100)} style={linkStyle}>גלריה</a></li>
+              <li><a href="#contact" onClick={(e) => handleScroll(e, 'contact', -100)} style={linkStyle}>צור קשר</a></li>
             </ul>
           </nav>
         </div>
