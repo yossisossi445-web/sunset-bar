@@ -140,6 +140,18 @@ const HeroScroll = () => {
 
   }, [loaded, images]);
 
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const targetElement = document.getElementById('contact');
+    if (targetElement) {
+      const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - 100,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section ref={sectionRef} style={{ height: '500vh', position: 'relative', backgroundColor: '#000' }}>
       
@@ -188,6 +200,86 @@ const HeroScroll = () => {
           }}>
             Sunset Bar
           </h1>
+
+          <button
+            onClick={scrollToContact}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-1px) scale(1.02)";
+              e.currentTarget.style.boxShadow =
+                "0 8px 18px rgba(146,96,53,.22), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -2px 3px rgba(173,118,73,.18)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0) scale(1)";
+              e.currentTarget.style.boxShadow =
+                "0 3px 8px rgba(146,96,53,.15), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -2px 3px rgba(173,118,73,.18)";
+            }}
+            style={{
+              pointerEvents: "auto",
+              marginTop: "3rem",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "12px",
+              padding: "11px 22px",
+              background:
+                "linear-gradient(180deg,#f7e0c8 0%,#efc79f 46%,#e0ad81 100%)",
+              border: "1px solid rgba(255,250,244,.95)",
+              borderRadius: "9999px",
+              color: "#70472c",
+              fontFamily: "'Heebo', var(--font-heading), sans-serif",
+              fontWeight: 600,
+              fontSize: "18px",
+              lineHeight: 1,
+              cursor: "pointer",
+              userSelect: "none",
+              position: "relative",
+              boxShadow:
+                "0 3px 8px rgba(146,96,53,.15), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -2px 3px rgba(173,118,73,.18)",
+              transition: "all .22s ease",
+            }}
+          >
+            <span
+              style={{
+                position: "absolute",
+                inset: "2px",
+                borderRadius: "9999px",
+                border: "1px solid rgba(255,255,255,.28)",
+                pointerEvents: "none",
+              }}
+            />
+            <span
+              style={{
+                width: "26px",
+                height: "26px",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background:
+                  "linear-gradient(180deg,#f9e6d2 0%,#efc69d 100%)",
+                border: "1px solid rgba(255,255,255,.75)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,.8), 0 1px 2px rgba(130,80,40,.12)",
+                color: "#815234",
+                fontSize: "15px",
+                fontWeight: 700,
+                flexShrink: 0,
+              }}
+            >
+              ›
+            </span>
+            <span
+              style={{
+                position: "relative",
+                zIndex: 1,
+                letterSpacing: "-0.02em",
+                whiteSpace: "nowrap",
+                textShadow: "0 1px 0 rgba(255,255,255,.35)",
+              }}
+            >
+              קבלת הצעת מחיר
+            </span>
+          </button>
         </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0 }}>
