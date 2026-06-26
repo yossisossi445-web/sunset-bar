@@ -140,19 +140,6 @@ const HeroScroll = () => {
 
   }, [loaded, images]);
 
-  // פונקציית הגלילה לכפתור (זהה למה שיש בתפריט העליון)
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    const targetElement = document.getElementById('contact');
-    if (targetElement) {
-      const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementPosition - 100, // מינוס 100 כמו שביקשת בסרגל הניווט
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <section ref={sectionRef} style={{ height: '500vh', position: 'relative', backgroundColor: '#000' }}>
       
@@ -201,37 +188,6 @@ const HeroScroll = () => {
           }}>
             Sunset Bar
           </h1>
-          
-          {/* הכפתור החדש שמפעיל גלילה למטה לסקשן צור קשר */}
-          <button 
-            onClick={scrollToContact}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.05)';
-              e.currentTarget.style.boxShadow = '0px 0px 20px rgba(251, 191, 36, 0.6)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0px 0px 10px rgba(251, 191, 36, 0.2)';
-            }}
-            style={{
-              pointerEvents: 'auto', // קריטי כדי שהכפתור יהיה לחיץ בתוך קונטיינר "אטום"
-              marginTop: '3rem',
-              padding: '1rem 3.5rem',
-              background: 'rgba(0, 0, 0, 0.5)', // רקע שחור-שקוף זכוכיתי כמו בתמונה
-              border: '1px solid rgba(251, 191, 36, 0.5)', // מסגרת זהב עדינה
-              borderRadius: '50px',
-              color: '#fcd34d', // טקסט זהב
-              fontSize: '1.2rem',
-              fontWeight: 800,
-              fontFamily: 'var(--font-heading)',
-              cursor: 'pointer',
-              boxShadow: '0px 0px 10px rgba(251, 191, 36, 0.2)',
-              backdropFilter: 'blur(8px)',
-              transition: 'all 0.3s ease',
-            }}
-          >
-            לקבלת הצעת מחיר
-          </button>
         </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0 }}>
