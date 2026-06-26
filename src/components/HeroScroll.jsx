@@ -140,6 +140,18 @@ const HeroScroll = () => {
 
   }, [loaded, images]);
 
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const targetElement = document.getElementById('contact');
+    if (targetElement) {
+      const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - 100,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section ref={sectionRef} style={{ height: '500vh', position: 'relative', backgroundColor: '#000' }}>
       
@@ -179,31 +191,128 @@ const HeroScroll = () => {
             letterSpacing: '0.02em', 
             margin: 0, 
             lineHeight: 1.1,
-            color: '#ffffff', 
+            color: '#fff9ea', 
             textShadow: `
-              0px 0px 10px rgba(255, 255, 255, 0.5),
-              0px 0px 20px rgba(251, 191, 36, 0.6),
-              0px 0px 40px rgba(234, 88, 12, 0.4)
+              0px 2px 2px rgba(0, 0, 0, 0.4),
+              0px 0px 8px rgba(255, 140, 0, 0.8),
+              0px 0px 18px rgba(220, 60, 0, 0.5)
             `
           }}>
             Sunset Bar
           </h1>
+          
+          <button
+            onClick={scrollToContact}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-1px) scale(1.02)";
+              e.currentTarget.style.boxShadow =
+                "0 8px 18px rgba(146,96,53,.22), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -2px 3px rgba(173,118,73,.18)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0) scale(1)";
+              e.currentTarget.style.boxShadow =
+                "0 3px 8px rgba(146,96,53,.15), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -2px 3px rgba(173,118,73,.18)";
+            }}
+            style={{
+              pointerEvents: "auto",
+              marginTop: "3rem",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "12px",
+              padding: "11px 22px",
+              background:
+                "linear-gradient(180deg,#f7e0c8 0%,#efc79f 46%,#e0ad81 100%)",
+              border: "1px solid rgba(255,250,244,.95)",
+              borderRadius: "9999px",
+              color: "#70472c",
+              fontFamily: "'Heebo', var(--font-heading), sans-serif",
+              fontWeight: 600,
+              fontSize: "18px",
+              lineHeight: 1,
+              cursor: "pointer",
+              userSelect: "none",
+              position: "relative",
+              boxShadow:
+                "0 3px 8px rgba(146,96,53,.15), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -2px 3px rgba(173,118,73,.18)",
+              transition: "all .22s ease",
+            }}
+          >
+            <span
+              style={{
+                position: "absolute",
+                inset: "2px",
+                borderRadius: "9999px",
+                border: "1px solid rgba(255,255,255,.28)",
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* הטקסט הוקדם לחץ, כדי שהחץ יופיע בצד ימין */}
+            <span
+              style={{
+                position: "relative",
+                zIndex: 1,
+                letterSpacing: "-0.02em",
+                whiteSpace: "nowrap",
+                textShadow: "0 1px 0 rgba(255,255,255,.35)",
+              }}
+            >
+              קבלת הצעת מחיר
+            </span>
+
+            {/* עיגול החץ - עם אייקון SVG חלק ומדויק ממוקם כעת בצד ימין */}
+            <span
+              style={{
+                width: "26px",
+                height: "26px",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background:
+                  "linear-gradient(180deg,#f9e6d2 0%,#efc69d 100%)",
+                border: "1px solid rgba(255,255,255,.75)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,.8), 0 1px 2px rgba(130,80,40,.12)",
+                color: "#815234",
+                flexShrink: 0,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '1px' }}>
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </span>
+          </button>
         </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0 }}>
-            <h2 style={{ 
-              fontSize: 'clamp(2rem, 5vw, 4rem)', 
-              margin: 0, 
-              color: '#fcd34d', 
-              textShadow: '0px 2px 8px rgba(0, 0, 0, 0.8)'
+            {/* הכותרת המשנית עם העיצוב החדש */}
+            <h2 style={{
+              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              margin: 0,
+              fontWeight: 900,
+              color: '#f7e6cf',
+              textShadow: `
+                0 1px 0 rgba(255,255,255,0.45),
+                0 2px 0 rgba(225,200,170,0.9),
+                0 4px 10px rgba(0,0,0,0.28)
+              `
             }}>
               להפוך כל אירוע לחוויה
             </h2>
-            <p style={{ 
-              fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
-              color: '#ffffff', 
+            
+            {/* הטקסט הקטן יותר עם העיצוב החדש */}
+            <p style={{
+              fontSize: 'clamp(1rem, 2vw, 1.5rem)',
+              color: '#f7e6cf',
               fontWeight: 700,
-              textShadow: '0px 2px 6px rgba(0, 0, 0, 0.7)'
+              marginTop: '10px',
+              textShadow: `
+                0 1px 0 rgba(255,255,255,0.35),
+                0 2px 0 rgba(225,200,170,0.7),
+                0 3px 8px rgba(0,0,0,0.25)
+              `
             }}>
               של צבעים, טעמים ואנרגיות
             </p>
