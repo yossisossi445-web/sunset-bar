@@ -279,8 +279,8 @@ const HeroScroll = () => {
                 flexShrink: 0,
               }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '1px' }}>
-                <polyline points="9 18 15 12 9 6"></polyline>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '1px' }}>
+                <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
             </span>
           </button>
