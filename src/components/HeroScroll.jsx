@@ -215,7 +215,7 @@ const HeroScroll = () => {
             }}
             style={{
               pointerEvents: "auto",
-              marginTop: "4rem",
+              marginTop: "5rem",
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
