@@ -292,7 +292,7 @@ const HeroScroll = () => {
               fontSize: 'clamp(2rem, 5vw, 4rem)',
               margin: 0,
               fontWeight: 900,
-              color: '#f7e6cf',
+              color: '#fcd34d',
               textShadow: `
                 0 1px 0 rgba(255,255,255,0.45),
                 0 2px 0 rgba(225,200,170,0.9),
