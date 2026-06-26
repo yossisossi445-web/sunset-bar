@@ -247,6 +247,21 @@ const HeroScroll = () => {
                 pointerEvents: "none",
               }}
             />
+
+            {/* הטקסט הוקדם לחץ, כדי שהחץ יופיע בצד ימין */}
+            <span
+              style={{
+                position: "relative",
+                zIndex: 1,
+                letterSpacing: "-0.02em",
+                whiteSpace: "nowrap",
+                textShadow: "0 1px 0 rgba(255,255,255,.35)",
+              }}
+            >
+              קבלת הצעת מחיר
+            </span>
+
+            {/* עיגול החץ - עם אייקון SVG חלק ומדויק ממוקם כעת בצד ימין */}
             <span
               style={{
                 width: "26px",
@@ -261,23 +276,12 @@ const HeroScroll = () => {
                 boxShadow:
                   "inset 0 1px 0 rgba(255,255,255,.8), 0 1px 2px rgba(130,80,40,.12)",
                 color: "#815234",
-                fontSize: "15px",
-                fontWeight: 700,
                 flexShrink: 0,
               }}
             >
-              ›
-            </span>
-            <span
-              style={{
-                position: "relative",
-                zIndex: 1,
-                letterSpacing: "-0.02em",
-                whiteSpace: "nowrap",
-                textShadow: "0 1px 0 rgba(255,255,255,.35)",
-              }}
-            >
-              קבלת הצעת מחיר
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '1px' }}>
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
             </span>
           </button>
         </div>
