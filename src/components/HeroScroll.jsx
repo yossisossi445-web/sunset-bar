@@ -305,7 +305,7 @@ const HeroScroll = () => {
             {/* הטקסט הקטן יותר עם העיצוב החדש */}
             <p style={{
               fontSize: 'clamp(1rem, 2vw, 1.5rem)',
-              color: '#f7e6cf',
+              color: '#fff8ef',
               fontWeight: 700,
               marginTop: '10px',
               textShadow: `
