@@ -248,6 +248,20 @@ const HeroScroll = () => {
               }}
             />
 
+            {/* הטקסט הוקדם לחץ, כדי שהחץ יופיע בצד ימין */}
+            <span
+              style={{
+                position: "relative",
+                zIndex: 1,
+                letterSpacing: "-0.02em",
+                whiteSpace: "nowrap",
+                textShadow: "0 1px 0 rgba(255,255,255,.35)",
+              }}
+            >
+              קבלת הצעת מחיר
+            </span>
+
+            {/* עיגול החץ - עם אייקון SVG חלק ומדויק ממוקם כעת בצד ימין */}
             <span
               style={{
                 width: "26px",
@@ -262,35 +276,23 @@ const HeroScroll = () => {
                 boxShadow:
                   "inset 0 1px 0 rgba(255,255,255,.8), 0 1px 2px rgba(130,80,40,.12)",
                 color: "#815234",
-                fontSize: "15px",
-                fontWeight: 700,
                 flexShrink: 0,
               }}
             >
-              ›
-            </span>
-
-            <span
-              style={{
-                position: "relative",
-                zIndex: 1,
-                letterSpacing: "-0.02em",
-                whiteSpace: "nowrap",
-                textShadow: "0 1px 0 rgba(255,255,255,.35)",
-              }}
-            >
-              קבלת הצעת מחיר
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '1px' }}>
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
             </span>
           </button>
         </div>
 
           <div ref={text2Ref} style={{ position: 'absolute', textAlign: 'center', opacity: 0 }}>
             {/* הכותרת המשנית עם העיצוב החדש */}
-            <h2 style={{ 
-              fontSize: 'clamp(2rem, 5vw, 4rem)', 
-              margin: 0, 
+            <h2 style={{
+              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              margin: 0,
               fontWeight: 900,
-              color: '#f7e6cf', 
+              color: '#f7e6cf',
               textShadow: `
                 0 1px 0 rgba(255,255,255,0.45),
                 0 2px 0 rgba(225,200,170,0.9),
@@ -301,9 +303,9 @@ const HeroScroll = () => {
             </h2>
             
             {/* הטקסט הקטן יותר עם העיצוב החדש */}
-            <p style={{ 
-              fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
-              color: '#f7e6cf', 
+            <p style={{
+              fontSize: 'clamp(1rem, 2vw, 1.5rem)',
+              color: '#f7e6cf',
               fontWeight: 700,
               marginTop: '10px',
               textShadow: `
