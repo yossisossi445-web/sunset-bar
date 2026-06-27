@@ -42,8 +42,13 @@ const HeroScroll = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // --- הוספת תיקון החדות (DPR) לטעינה הראשונית ---
+    const dpr = window.devicePixelRatio || 1;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    // ---------------------------------------------
 
     const render = (index) => {
       if (images[index]) {
@@ -87,8 +92,13 @@ const HeroScroll = () => {
     });
 
     window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // --- הוספת תיקון החדות (DPR) לאירוע שינוי גודל החלון ---
+      const currentDpr = window.devicePixelRatio || 1;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      canvas.width = window.innerWidth * currentDpr;
+      canvas.height = window.innerHeight * currentDpr;
+      // -----------------------------------------------------
       render(Math.min(FRAME_COUNT - 1, Math.floor(ScrollTrigger.getById('heroScroll')?.progress * FRAME_COUNT || 0)));
     });
 
@@ -248,7 +258,6 @@ const HeroScroll = () => {
               }}
             />
 
-            {/* הטקסט הוקדם לחץ, כדי שהחץ יופיע בצד ימין */}
             <span
               style={{
                 position: "relative",
@@ -261,7 +270,6 @@ const HeroScroll = () => {
               קבלת הצעת מחיר
             </span>
 
-            {/* עיגול החץ - עם אייקון SVG חלק ומדויק ממוקם כעת בצד ימין */}
             <span
               style={{
                 width: "26px",
