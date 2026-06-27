@@ -42,13 +42,10 @@ const HeroScroll = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     
-    // --- הוספת תיקון החדות (DPR) לטעינה הראשונית ---
     const dpr = window.devicePixelRatio || 1;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
+    // הסרנו מכאן את canvas.style - ה-CSS יטפל במתיחה בצורה חלקה יותר
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
-    // ---------------------------------------------
 
     const render = (index) => {
       if (images[index]) {
@@ -77,28 +74,18 @@ const HeroScroll = () => {
 
     render(0);
 
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 0.5,
-      onUpdate: (self) => {
-        const frameIndex = Math.min(
-          FRAME_COUNT - 1,
-          Math.floor(self.progress * FRAME_COUNT)
-        );
-        requestAnimationFrame(() => render(frameIndex));
-      }
-    });
+    // שומרים את הרוחב הנוכחי כדי לדעת אם באמת סובבו את המסך
+    let lastWidth = window.innerWidth;
 
     window.addEventListener('resize', () => {
-      // --- הוספת תיקון החדות (DPR) לאירוע שינוי גודל החלון ---
+      // אם רק הגובה השתנה (בגלל שורת הכתובת במובייל) - אנחנו מתעלמים כדי למנוע את הלאג
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+
       const currentDpr = window.devicePixelRatio || 1;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
       canvas.width = window.innerWidth * currentDpr;
       canvas.height = window.innerHeight * currentDpr;
-      // -----------------------------------------------------
+      
       render(Math.min(FRAME_COUNT - 1, Math.floor(ScrollTrigger.getById('heroScroll')?.progress * FRAME_COUNT || 0)));
     });
 
@@ -178,7 +165,8 @@ const HeroScroll = () => {
         </div>
       )}
 
-      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
+      {/* ה-height שונה כאן ל-100dvh */}
+      <div style={{ position: 'sticky', top: 0, height: '100dvh', overflow: 'hidden' }}>
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
         
         <div style={{
