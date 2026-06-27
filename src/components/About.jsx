@@ -2,7 +2,15 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="container" style={{ margin: '4rem auto' }}>
+    <section 
+      id="about" 
+      className="container" 
+      style={{ 
+        margin: '4rem auto',
+        scrollSnapAlign: 'start',    // מגנט את תחילת המקטע לקצה המסך
+        scrollSnapStop: 'always'     // מכריח את הדפדפן לבלום פה ולא לדלג גם בגלילה מהירה
+      }}
+    >
       <div className="glass-panel" style={{ 
         padding: '4rem', 
         display: 'flex', 
