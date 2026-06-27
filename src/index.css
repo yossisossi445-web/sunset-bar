@@ -82,10 +82,6 @@ html.lenis {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
-html {
-  /* מפעיל את מנגנון המגנט רק כשהמשתמש קרוב לאזור ההיצמדות */
-  scroll-snap-type: y proximity; 
-}
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
