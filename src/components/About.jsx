@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "center center", // המקטע מתחיל את ה"ברקס" כשהוא מגיע בדיוק לאמצע המסך
+      end: "+=80%", // המרחק שהמשתמש צריך לגלול בזמן שהמסך קפוא (זה מה שסופג את המומנטום)
+      pin: true, // הלוגיקה שנועלת את המקטע במקום
+      pinSpacing: true, // דואג שהמקטעים הבאים לא ידרסו את המקטע הזה בזמן ההקפאה
+    });
+  }, []);
+
   return (
-    <section 
-      id="about" 
-      className="container" 
-      style={{ 
-        margin: '4rem auto',
-        scrollSnapAlign: 'start',    // מגנט את תחילת המקטע לקצה המסך
-        scrollSnapStop: 'always'     // מכריח את הדפדפן לבלום פה ולא לדלג גם בגלילה מהירה
-      }}
-    >
+    <section ref={sectionRef} id="about" className="container" style={{ margin: '4rem auto' }}>
       <div className="glass-panel" style={{ 
         padding: '4rem', 
         display: 'flex', 
