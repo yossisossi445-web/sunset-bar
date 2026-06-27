@@ -42,8 +42,10 @@ const HeroScroll = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     
+    // החזרנו את ההגדרות המקוריות שעבדו לך
     const dpr = window.devicePixelRatio || 1;
-    // הסרנו מכאן את canvas.style - ה-CSS יטפל במתיחה בצורה חלקה יותר
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
 
@@ -74,19 +76,38 @@ const HeroScroll = () => {
 
     render(0);
 
-    // שומרים את הרוחב הנוכחי כדי לדעת אם באמת סובבו את המסך
+    ScrollTrigger.create({
+      id: "heroScroll", // הוספנו את ה-ID הזה כדי שה-resize למטה יעבוד כראוי
+      trigger: sectionRef.current,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.5,
+      onUpdate: (self) => {
+        const frameIndex = Math.min(
+          FRAME_COUNT - 1,
+          Math.floor(self.progress * FRAME_COUNT)
+        );
+        requestAnimationFrame(() => render(frameIndex));
+      }
+    });
+
+    // המשתנה ששומר את הרוחב כדי למנוע את הלאג במובייל
     let lastWidth = window.innerWidth;
 
     window.addEventListener('resize', () => {
-      // אם רק הגובה השתנה (בגלל שורת הכתובת במובייל) - אנחנו מתעלמים כדי למנוע את הלאג
+      // ברגע ששורת הכתובת נעלמת, רק הגובה משתנה. במקרה כזה אנחנו עוצרים ולא מחשבים מחדש.
       if (window.innerWidth === lastWidth) return;
       lastWidth = window.innerWidth;
 
       const currentDpr = window.devicePixelRatio || 1;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
       canvas.width = window.innerWidth * currentDpr;
       canvas.height = window.innerHeight * currentDpr;
       
-      render(Math.min(FRAME_COUNT - 1, Math.floor(ScrollTrigger.getById('heroScroll')?.progress * FRAME_COUNT || 0)));
+      const st = ScrollTrigger.getById('heroScroll');
+      const currentProgress = st ? st.progress : 0;
+      render(Math.min(FRAME_COUNT - 1, Math.floor(currentProgress * FRAME_COUNT)));
     });
 
     gsap.to(text1Ref.current, {
@@ -165,8 +186,8 @@ const HeroScroll = () => {
         </div>
       )}
 
-      {/* ה-height שונה כאן ל-100dvh */}
-      <div style={{ position: 'sticky', top: 0, height: '100dvh', overflow: 'hidden' }}>
+      {/* הוחזר ל-100vh כפי שעבד לך */}
+      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
         
         <div style={{
