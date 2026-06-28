@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <>
       <style>{`
-        /* --- עיצוב הבסיס (תצוגת מחשב בדיוק כמו שהייתה) --- */
+        /* --- עיצוב הבסיס למחשב --- */
         .navbar-header {
           position: fixed;
           top: 0;
@@ -57,36 +57,36 @@ const Navbar = () => {
           white-space: nowrap;
         }
 
-        /* --- התאמות נטו לטלפון (מסכים קטנים מ-768px) --- */
+        /* --- התאמות למובייל (הכל הוגדל באופן יחסי ופרופורציונלי) --- */
         @media (max-width: 768px) {
           .navbar-header {
-            padding: 0.5rem 0; /* מוריד את העובי המוגזם של הסרגל */
+            padding: 0.8rem 0; 
           }
           .navbar-glass {
-            padding: 0.5rem 1rem; /* מצמצם את הריווח הפנימי */
-            gap: 1rem; /* מבטיח שהלוגו לעולם לא יידבק לקישורים */
+            padding: 0.6rem 1.2rem; 
+            gap: 1.2rem; 
           }
           .navbar-logo {
-            font-size: 1.1rem; /* מקטין טיפה את הלוגו כדי לפנות מקום */
+            font-size: 1.35rem; 
           }
           .navbar-nav ul {
-            gap: 0.6rem; /* מצמצם את הרווח בין הקישורים כדי שלא יעופו מהסרגל */
+            gap: 0.85rem; 
           }
           .navbar-link {
-            font-size: 0.8rem; /* מקטין את הכתב כדי שיכנסו בשורה אחת */
+            font-size: 0.95rem; 
           }
         }
         
-        /* --- התאמה למסכים של טלפונים קטנים במיוחד --- */
+        /* --- הגנה למסכים קטנים מאוד --- */
         @media (max-width: 380px) {
           .navbar-nav ul {
-            gap: 0.4rem;
+            gap: 0.6rem;
           }
           .navbar-link {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
           }
           .navbar-logo {
-            font-size: 1rem;
+            font-size: 1.2rem;
           }
         }
       `}</style>
