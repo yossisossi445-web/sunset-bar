@@ -1,64 +1,37 @@
-import React, { useEffect } from 'react'
-import Lenis from 'lenis'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
+import React from 'react';
+import { ReactLenis } from '@studio-freight/react-lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import Navbar from './components/Navbar'
-import HeroScroll from './components/HeroScroll'
-import About from './components/About'
-import Features from './components/Features'
-import Gallery from './components/Gallery'
-import QuoteForm from './components/QuoteForm'
-import Footer from './components/Footer'
-import CustomCursor from './components/CustomCursor'
-import Services from './components/Services'
+import Navbar from './components/Navbar';
+import HeroScroll from './components/HeroScroll';
+import About from './components/About';
+// ... אם יש לך עוד אימפורטים של קומפוננטות כמו Gallery או Footer, תשאיר אותם פה
 
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+// רישום וחיבור גלובלי של ה-ScrollTrigger ל-Lenis
+gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== 'undefined') {
+  ScrollTrigger.clearScrollMemory();
+  ScrollTrigger.defaults({ scroller: window });
+}
 
 function App() {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    })
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    return () => {
-      lenis.destroy()
-    }
-  }, [])
-
   return (
-    <div className="app-container">
-      <CustomCursor />
+    <ReactLenis root options={{ 
+      duration: 1.2,       // משך זמן הגלילה (שניות) - יוצר את האפקט החלק
+      lerp: 0.06,          // ככל שהמספר נמוך יותר, הברקס כבד ומרוסן יותר (0.06 זה מעולה לברקס במובייל)
+      smoothTouch: true,   // מפעיל את הגלילה המרוסנת גם בטלפונים
+    }}>
+      
       <Navbar />
       <main>
         <HeroScroll />
-        <div className="content-wrapper">
-          <About />
-          <Services />
-          <Features />
-          <Gallery />
-          <QuoteForm />
-        </div>
+        <About />
+        {/* אם יש לך פה עוד קומפוננטות כמו <Gallery /> או <Footer />, תשאיר אותן פה */}
       </main>
-      <Footer />
-    </div>
-  )
+
+    </ReactLenis>
+  );
 }
 
-export default App
+export default App;
