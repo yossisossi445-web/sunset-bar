@@ -11,7 +11,7 @@ const About = () => {
   useGSAP(() => {
     ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: "top 85%", // מופעל רגע לפני שהמקטע מגיע לאמצע המסך
+      start: "top 95%", // מופעל רגע לפני שהמקטע מגיע לאמצע המסך
       onEnter: () => {
         // בודקים שהגלילה שלנו קיימת
         if (window.lenis) {
