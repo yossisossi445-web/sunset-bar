@@ -1,10 +1,18 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const CustomCursor = () => {
   const cursorRef = useRef(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    // בדיקה האם המכשיר הוא מכשיר מגע / טלפון
+    const touchCheck = window.matchMedia('(pointer: coarse)').matches;
+    setIsTouchDevice(touchCheck);
+
+    // אם זה מכשיר מגע, נעצור כאן ולא נוסיף שום מאזיני אירועים של עכבר
+    if (touchCheck) return;
+
     const cursor = cursorRef.current;
     if (!cursor) return;
 
@@ -42,6 +50,9 @@ const CustomCursor = () => {
       window.removeEventListener('mouseout', handleMouseOut);
     };
   }, []);
+
+  // אם זה מכשיר מגע - הקומפוננטה מחזירה null ולא מציגה כלום על המסך
+  if (isTouchDevice) return null;
 
   return (
     <div
