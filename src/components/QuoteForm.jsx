@@ -3,8 +3,6 @@ import gsap from 'gsap';
 
 const QuoteForm = () => {
   const buttonRef = useRef(null);
-  
-  // הוספנו ניהול מצב כדי לדעת אם הטופס נשלח בהצלחה
   const [status, setStatus] = useState('');
 
   const handleMouseMove = (e) => {
@@ -32,10 +30,9 @@ const QuoteForm = () => {
     });
   };
 
-  // הפונקציה שאשכרה שולחת את הנתונים לאימייל שלכם
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('sending'); // משנה את הכפתור ל"שולח..."
+    setStatus('sending'); 
     
     const form = e.target;
     const formData = new FormData(form);
@@ -50,9 +47,9 @@ const QuoteForm = () => {
       });
 
       if (response.ok) {
-        setStatus('success'); // משנה את הכפתור ל"נשלח בהצלחה"
-        form.reset(); // מנקה את השדות
-        setTimeout(() => setStatus(''), 5000); // מחזיר את הכפתור למצב רגיל אחרי 5 שניות
+        setStatus('success'); 
+        form.reset(); 
+        setTimeout(() => setStatus(''), 5000); 
       } else {
         setStatus('error');
         setTimeout(() => setStatus(''), 5000);
@@ -65,28 +62,29 @@ const QuoteForm = () => {
 
   return (
     <section id="contact" className="container" style={{ margin: '6rem auto', direction: 'rtl' }}>
-      <div className="glass-panel" style={{ maxWidth: '750px', margin: '0 auto', padding: '3rem' }}>
+      {/* שמנו קלאס חדש form-panel כדי לשלוט בעיצוב הרספונסיבי למטה */}
+      <div className="glass-panel form-panel">
         
-        {/* הכותרת והטקסט שהעתקנו מהתמונה */}
         <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '0.5rem' }}>
           מחכים לחגוג <span className="text-gradient">איתכם!</span>
         </h2>
-        <p style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#ccc', fontSize: '1.2rem' }}>
+        <p style={{ textAlign: 'center', marginBottom: '3rem', color: '#ccc', fontSize: '1.2rem' }}>
           השאירו פרטים ונחזור אליכם בהקדם עם הצעה מתוקה
         </p>
         
         <form 
-          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
           onSubmit={handleSubmit}
         >
           {/* שורה 1 - שם מלא וטלפון */}
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {/* הגדלנו את הבסיס ל-300px כדי שיתפרסו טוב יותר */}
+            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <label style={labelStyle}>שם מלא</label>
               <input type="text" name="שם_מלא" placeholder="ישראל ישראלי" style={inputStyle} required />
             </div>
             
-            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <label style={labelStyle}>טלפון</label>
               <input type="tel" name="טלפון" placeholder="050-0000000" style={inputStyle} required />
             </div>
@@ -94,12 +92,12 @@ const QuoteForm = () => {
           
           {/* שורה 2 - תאריך ושעות */}
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <label style={labelStyle}>תאריך האירוע</label>
               <input type="date" name="תאריך_אירוע" placeholder="dd/mm/yyyy" style={inputStyle} />
             </div>
             
-            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <label style={labelStyle}>שעות (לדוגמא: 20:00-01:00)</label>
               <input type="text" name="שעות" placeholder="הכנס שעות" style={inputStyle} />
             </div>
@@ -107,12 +105,12 @@ const QuoteForm = () => {
 
           {/* שורה 3 - מיקום וסוג אירוע */}
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <label style={labelStyle}>מיקום</label>
               <input type="text" name="מיקום" placeholder="עיר / אולם" style={inputStyle} />
             </div>
 
-            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <label style={labelStyle}>סוג האירוע</label>
               <input type="text" name="סוג_אירוע" placeholder="חתונה / יום הולדת..." style={inputStyle} />
             </div>
@@ -120,16 +118,15 @@ const QuoteForm = () => {
           
           {/* שורה 4 - כמות מוזמנים */}
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <label style={labelStyle}>כמות מוזמנים</label>
               <input type="number" name="כמות_מוזמנים" placeholder="100" style={inputStyle} />
             </div>
-            {/* השארנו מקום ריק לצד כמות מוזמנים כדי לשמור על גריד סימטרי ויפה */}
-            <div style={{ flex: '1 1 250px' }} />
+            <div style={{ flex: '1 1 300px' }} />
           </div>
           
           {/* שורה 5 - הערות */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             <label style={labelStyle}>הערות</label>
             <textarea 
               name="הערות" 
@@ -138,7 +135,7 @@ const QuoteForm = () => {
             ></textarea>
           </div>
           
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem', perspective: '1000px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem', perspective: '1000px' }}>
             <button 
               ref={buttonRef}
               type="submit" 
@@ -150,11 +147,11 @@ const QuoteForm = () => {
                 backgroundSize: '200% auto',
                 color: '#12090c',
                 border: 'none',
-                padding: '1rem 3rem',
+                padding: '1.2rem 3.5rem',
                 fontSize: '1.2rem',
                 fontWeight: 800,
                 borderRadius: '50px',
-                cursor: status === 'sending' ? 'wait' : 'pointer', // משנה את סמן העכבר בזמן שליחה
+                cursor: status === 'sending' ? 'wait' : 'pointer',
                 fontFamily: 'var(--font-heading)',
                 transition: 'all 0.5s',
                 animation: 'gradientShift 5s ease infinite',
@@ -162,7 +159,6 @@ const QuoteForm = () => {
               }}
               onMouseEnter={(e) => { e.currentTarget.style.backgroundPosition = 'right center'; }}
             >
-              {/* הטקסט בכפתור משתנה אוטומטית לפי המצב */}
               {status === 'sending' ? 'שולח...' : 
                status === 'success' ? 'נשלח בהצלחה! 🥂' : 
                status === 'error' ? 'שגיאה בשליחה, נסו שוב' : 
@@ -173,6 +169,20 @@ const QuoteForm = () => {
       </div>
 
       <style>{`
+        /* העיצוב החדש והרחב יותר של הטופס */
+        .form-panel {
+          max-width: 950px; /* הרחבנו מ-750 ל-950 */
+          margin: 0 auto;
+          padding: 4rem; /* מרווח יפה במחשב */
+        }
+
+        /* התאמה לטלפונים - הקטנת הריווח כדי לתת לשדות יותר מקום */
+        @media (max-width: 768px) {
+          .form-panel {
+            padding: 1.5rem !important; /* ריווח הרבה יותר קטן בטלפון */
+          }
+        }
+
         @keyframes gradientShift {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
@@ -183,27 +193,27 @@ const QuoteForm = () => {
   );
 };
 
-// סגנון חדש לכותרות מעל השדות
 const labelStyle = {
-  fontSize: '0.9rem',
+  fontSize: '0.95rem',
   color: '#ffffff',
   fontWeight: '600',
   textAlign: 'right',
-  paddingRight: '4px'
+  paddingRight: '6px'
 };
 
 const inputStyle = {
   width: '100%',
-  padding: '1rem',
-  background: 'rgba(255,255,255,0.03)',
+  padding: '1.2rem 1rem', // הגדלנו טיפה את הגובה של השדות עצמם לנוכחות טובה יותר
+  background: 'rgba(255,255,255,0.04)',
   border: '1px solid var(--glass-border)',
   borderRadius: '12px',
-  color: '#ffffff', // וידאתי שהטקסט יהיה לבן וקריא
+  color: '#ffffff',
   fontFamily: 'var(--font-body)',
-  fontSize: '1rem',
+  fontSize: '1.05rem',
   outline: 'none',
-  textAlign: 'right', // פותר את הצמדת הפלייסהולדר והספרות לימין
-  direction: 'rtl'    // דואג לסימני פיסוק ותווים מיוחדים בעברית
+  textAlign: 'right',
+  direction: 'rtl',
+  transition: 'border-color 0.3s ease, background-color 0.3s ease'
 };
 
 export default QuoteForm;
