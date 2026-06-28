@@ -19,16 +19,21 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.5,       // קצת הארכתי את הזמן כדי לתת תחושת בלימה רכה יותר
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
       mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
+      
+      // כאן הקסם קורה למובייל:
+      smoothTouch: true,   // עכשיו Lenis שולט גם במומנטום של הטלפון
+      touchMultiplier: 0.8, // במקום פי 2, הורדנו את זה אל מתחת ל-1 כדי שהטלפון ירגיש "כבד" ויבלום מהר
       infinite: false,
     })
+
+    // חשוב מאוד: מסנכרן את הסרטון והאנימציות עם הגלילה החדשה כדי שלא יהיו קפיצות
+    lenis.on('scroll', ScrollTrigger.update)
 
     function raf(time) {
       lenis.raf(time)
