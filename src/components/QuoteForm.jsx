@@ -62,80 +62,74 @@ const QuoteForm = () => {
 
   return (
     <section id="contact" className="container" style={{ margin: '6rem auto', direction: 'rtl' }}>
-      {/* שמנו קלאס חדש form-panel כדי לשלוט בעיצוב הרספונסיבי למטה */}
       <div className="glass-panel form-panel">
         
         <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '0.5rem' }}>
           מחכים לחגוג <span className="text-gradient">איתכם!</span>
         </h2>
-        <p style={{ textAlign: 'center', marginBottom: '3rem', color: '#ccc', fontSize: '1.2rem' }}>
+        <p style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#ccc', fontSize: '1.2rem' }}>
           השאירו פרטים ונחזור אליכם בהקדם עם הצעה מתוקה
         </p>
         
         <form 
-          style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
           onSubmit={handleSubmit}
         >
           {/* שורה 1 - שם מלא וטלפון */}
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            {/* הגדלנו את הבסיס ל-300px כדי שיתפרסו טוב יותר */}
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+          <div className="form-row">
+            <div className="input-group">
               <label style={labelStyle}>שם מלא</label>
               <input type="text" name="שם_מלא" placeholder="ישראל ישראלי" style={inputStyle} required />
             </div>
             
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div className="input-group">
               <label style={labelStyle}>טלפון</label>
               <input type="tel" name="טלפון" placeholder="050-0000000" style={inputStyle} required />
             </div>
           </div>
           
           {/* שורה 2 - תאריך ושעות */}
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+          <div className="form-row">
+            <div className="input-group">
               <label style={labelStyle}>תאריך האירוע</label>
               <input type="date" name="תאריך_אירוע" placeholder="dd/mm/yyyy" style={inputStyle} />
             </div>
             
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div className="input-group">
               <label style={labelStyle}>שעות (לדוגמא: 20:00-01:00)</label>
               <input type="text" name="שעות" placeholder="הכנס שעות" style={inputStyle} />
             </div>
           </div>
 
-          {/* שורה 3 - מיקום וסוג אירוע */}
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+          {/* שורה 3 - סוג אירוע, מיקום, כמות מוזמנים */}
+          <div className="form-row three-cols">
+            <div className="input-group">
+              <label style={labelStyle}>סוג האירוע</label>
+              <input type="text" name="סוג_אירוע" placeholder="חתונה / יום הולדת..." style={inputStyle} />
+            </div>
+            
+            <div className="input-group">
               <label style={labelStyle}>מיקום</label>
               <input type="text" name="מיקום" placeholder="עיר / אולם" style={inputStyle} />
             </div>
 
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              <label style={labelStyle}>סוג האירוע</label>
-              <input type="text" name="סוג_אירוע" placeholder="חתונה / יום הולדת..." style={inputStyle} />
-            </div>
-          </div>
-          
-          {/* שורה 4 - כמות מוזמנים */}
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div className="input-group">
               <label style={labelStyle}>כמות מוזמנים</label>
               <input type="number" name="כמות_מוזמנים" placeholder="100" style={inputStyle} />
             </div>
-            <div style={{ flex: '1 1 300px' }} />
           </div>
           
-          {/* שורה 5 - הערות */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+          {/* שורה 4 - הערות */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <label style={labelStyle}>הערות</label>
             <textarea 
               name="הערות" 
               placeholder="הערות / בקשות מיוחדות..." 
-              style={{...inputStyle, minHeight: '120px', resize: 'vertical'}}
+              style={{...inputStyle, minHeight: '100px', resize: 'vertical'}}
             ></textarea>
           </div>
           
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem', perspective: '1000px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem', perspective: '1000px' }}>
             <button 
               ref={buttonRef}
               type="submit" 
@@ -147,7 +141,7 @@ const QuoteForm = () => {
                 backgroundSize: '200% auto',
                 color: '#12090c',
                 border: 'none',
-                padding: '1.2rem 3.5rem',
+                padding: '1rem 3.5rem',
                 fontSize: '1.2rem',
                 fontWeight: 800,
                 borderRadius: '50px',
@@ -169,17 +163,35 @@ const QuoteForm = () => {
       </div>
 
       <style>{`
-        /* העיצוב החדש והרחב יותר של הטופס */
+        /* העיצוב המקורי והקומפקטי יותר של הטופס */
         .form-panel {
-          max-width: 950px; /* הרחבנו מ-750 ל-950 */
+          max-width: 800px;
           margin: 0 auto;
-          padding: 4rem; /* מרווח יפה במחשב */
+          padding: 3rem;
         }
 
-        /* התאמה לטלפונים - הקטנת הריווח כדי לתת לשדות יותר מקום */
+        .form-row {
+          display: flex;
+          gap: 1.5rem;
+          flex-wrap: wrap;
+        }
+
+        .input-group {
+          flex: 1 1 200px; /* מאפשר לשדות להתכווץ קצת יותר כדי ש-3 ייכנסו בשורה */
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        /* התאמה לטלפונים */
         @media (max-width: 768px) {
           .form-panel {
-            padding: 1.5rem !important; /* ריווח הרבה יותר קטן בטלפון */
+            padding: 2rem !important; /* ריווח מותאם לטלפון */
+          }
+          
+          .three-cols .input-group {
+             /* בטלפון, גם השורה של ה-3 שדות תרד לשורה נפרדת לכל שדה */
+            flex: 1 1 100%; 
           }
         }
 
@@ -194,7 +206,7 @@ const QuoteForm = () => {
 };
 
 const labelStyle = {
-  fontSize: '0.95rem',
+  fontSize: '0.9rem',
   color: '#ffffff',
   fontWeight: '600',
   textAlign: 'right',
@@ -203,13 +215,13 @@ const labelStyle = {
 
 const inputStyle = {
   width: '100%',
-  padding: '1.2rem 1rem', // הגדלנו טיפה את הגובה של השדות עצמם לנוכחות טובה יותר
+  padding: '1rem',
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid var(--glass-border)',
   borderRadius: '12px',
   color: '#ffffff',
   fontFamily: 'var(--font-body)',
-  fontSize: '1.05rem',
+  fontSize: '1rem',
   outline: 'none',
   textAlign: 'right',
   direction: 'rtl',
