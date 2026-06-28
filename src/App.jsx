@@ -28,17 +28,14 @@ function App() {
       mouseMultiplier: 1,
       smoothTouch: true,
       touchMultiplier: 0.8,
-      syncTouch: true, // משפר משמעותית את הביצועים בטלפונים
+      syncTouch: true, 
       infinite: false,
     })
 
-    // חשיפה גלובלית לצורך ניווט עתידי (כמו scroll to)
     window.lenis = lenis
     
-    // סנכרון עם GSAP
     lenis.on('scroll', ScrollTrigger.update)
 
-    // לופ האנימציה (Request Animation Frame)
     function raf(time) {
       lenis.raf(time)
       requestAnimationFrame(raf)
@@ -46,7 +43,6 @@ function App() {
 
     requestAnimationFrame(raf)
 
-    // ניקוי בעת סגירת הקומפוננטה
     return () => {
       window.lenis = null
       lenis.destroy()
@@ -65,9 +61,10 @@ function App() {
           <Features />
           <Gallery />
           <QuoteForm />
+          {/* הפוטר הוכנס פנימה לתוך העטיפה כדי שיקבל את הרקע השחור */}
+          <Footer />
         </div>
       </main>
-      <Footer />
     </div>
   )
 }
