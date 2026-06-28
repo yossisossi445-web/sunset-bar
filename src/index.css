@@ -46,10 +46,12 @@ a, button {
 .content-wrapper {
   position: relative;
   z-index: 10;
-  /* שינינו את ה-10% ל-5vh כדי שהשחור המלא יתחיל ממש מהר */
+  /* הקטנו את המעבר ל-2vh כדי שהשחור המלא יתחיל ממש מעל סרגל הניווט */
   background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 2vh);
-  padding-top: 5vh;
-  /* הורדנו את הרווח התחתון כדי שהפוטר ישב בצורה מושלמת בסוף */
+  
+  /* השארתי את ה-padding-top על 5vh כדי לשמור על המרווח היפה מהתוכן, 
+     אבל אם תרצה שגם התוכן עצמו יעלה יותר למעלה - תשנה גם את זה ל-2vh */
+  padding-top: 5vh; 
   padding-bottom: 0; 
 }
 .text-gradient {
