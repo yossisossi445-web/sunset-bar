@@ -42,7 +42,6 @@ const HeroScroll = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     
-    // החזרנו את ההגדרות המקוריות שעבדו לך
     const dpr = window.devicePixelRatio || 1;
     canvas.style.width = `${window.innerWidth}px`;
     canvas.style.height = `${window.innerHeight}px`;
@@ -77,7 +76,7 @@ const HeroScroll = () => {
     render(0);
 
     ScrollTrigger.create({
-      id: "heroScroll", // הוספנו את ה-ID הזה כדי שה-resize למטה יעבוד כראוי
+      id: "heroScroll", 
       trigger: sectionRef.current,
       start: "top top",
       end: "bottom bottom",
@@ -91,11 +90,9 @@ const HeroScroll = () => {
       }
     });
 
-    // המשתנה ששומר את הרוחב כדי למנוע את הלאג במובייל
     let lastWidth = window.innerWidth;
 
     window.addEventListener('resize', () => {
-      // ברגע ששורת הכתובת נעלמת, רק הגובה משתנה. במקרה כזה אנחנו עוצרים ולא מחשבים מחדש.
       if (window.innerWidth === lastWidth) return;
       lastWidth = window.innerWidth;
 
@@ -146,15 +143,7 @@ const HeroScroll = () => {
       }
     });
 
-    gsap.to(canvasRef.current, {
-      opacity: 0.3,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "90% top",
-        end: "bottom bottom",
-        scrub: true,
-      }
-    });
+    // אנימציית ה-opacity שהייתה פה נמחקה כדי שהתמונה תישאר בהירה בסוף
 
   }, [loaded, images]);
 
@@ -171,7 +160,8 @@ const HeroScroll = () => {
   };
 
   return (
-    <section ref={sectionRef} style={{ height: '500vh', position: 'relative', backgroundColor: '#000' }}>
+    // הורדנו את הרקע השחור מפה, המקטע משמש רק למדידת הגלילה (500vh)
+    <section ref={sectionRef} style={{ height: '500vh', position: 'relative' }}>
       
       {!loaded && (
         <div style={{
@@ -186,8 +176,8 @@ const HeroScroll = () => {
         </div>
       )}
 
-      {/* הוחזר ל-100vh כפי שעבד לך */}
-      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
+      {/* הקסם קורה כאן: position fixed עם zIndex 0, תוקע את הסרטון מאחור ונותן לאתר לעלות עליו */}
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', overflow: 'hidden', backgroundColor: '#000', zIndex: 0 }}>
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
         
         <div style={{
