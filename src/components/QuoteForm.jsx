@@ -163,9 +163,9 @@ const QuoteForm = () => {
       </div>
 
       <style>{`
-        /* העיצוב המקורי והקומפקטי יותר של הטופס */
         .form-panel {
-          max-width: 800px;
+          /* מתיחת הסקשן במחשב: הגדלנו את הרוחב כך שיתאים לגבולות הטקסט של הניווט */
+          max-width: 1050px; 
           margin: 0 auto;
           padding: 3rem;
         }
@@ -177,20 +177,19 @@ const QuoteForm = () => {
         }
 
         .input-group {
-          flex: 1 1 200px; /* מאפשר לשדות להתכווץ קצת יותר כדי ש-3 ייכנסו בשורה */
+          flex: 1 1 200px;
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
         }
 
-        /* התאמה לטלפונים */
+        /* התאמה לטלפונים - נשאר בדיוק כפי שהיה כדי לא לפגוע בתצוגה שם */
         @media (max-width: 768px) {
           .form-panel {
-            padding: 2rem !important; /* ריווח מותאם לטלפון */
+            padding: 2rem !important;
           }
           
           .three-cols .input-group {
-             /* בטלפון, גם השורה של ה-3 שדות תרד לשורה נפרדת לכל שדה */
             flex: 1 1 100%; 
           }
         }
