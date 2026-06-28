@@ -46,12 +46,13 @@ a, button {
 .content-wrapper {
   position: relative;
   z-index: 10;
-  /* הקטנו את המעבר ל-2vh כדי שהשחור המלא יתחיל ממש מעל סרגל הניווט */
+  
+  /* השארנו את מעבר השקיפות קצר כדי שהצבע השחור המלא יתחיל מהר */
   background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 2vh);
   
-  /* השארתי את ה-padding-top על 5vh כדי לשמור על המרווח היפה מהתוכן, 
-     אבל אם תרצה שגם התוכן עצמו יעלה יותר למעלה - תשנה גם את זה ל-2vh */
-  padding-top: 5vh; 
+  /* כאן הפתרון: הגדלנו משמעותית את הריווח העליון. 
+     זה "מותח" את הרקע השחור כלפי מעלה ביחס לתוכן */
+  padding-top: 20vh; 
   padding-bottom: 0; 
 }
 .text-gradient {
