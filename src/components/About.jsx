@@ -1,33 +1,8 @@
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
 
 const About = () => {
-  const sectionRef = useRef(null);
-
-  useGSAP(() => {
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top 95%", // מופעל רגע לפני שהמקטע מגיע לאמצע המסך
-      onEnter: () => {
-        // בודקים שהגלילה שלנו קיימת
-        if (window.lenis) {
-          // מוחקים את המומנטום הפראי של המשתמש ומשתלטים על ההגה
-          window.lenis.scrollTo(sectionRef.current, {
-            duration: 2.5, // משך הזמן של הסלואו-מושן (בשניות). אפשר לשנות אם תרצה לאט/מהר יותר
-            easing: (t) => 1 - Math.pow(1 - t, 5), // נוסחת מתמטיקה לנחיתה רכה מאוד בסוף
-          });
-        }
-      },
-      once: true // חשוב מאוד: מגדיר שזה יקרה רק בפעם הראשונה שהמשתמש גולל למטה, כדי שלא ישגע אותו בגלילה חזרה למעלה
-    });
-  }, []);
-
   return (
-    <section ref={sectionRef} id="about" className="container" style={{ margin: '4rem auto' }}>
+    <section id="about" className="container" style={{ margin: '4rem auto' }}>
       <div className="glass-panel" style={{ 
         padding: '4rem', 
         display: 'flex', 
