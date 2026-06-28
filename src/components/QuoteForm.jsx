@@ -64,7 +64,7 @@ const QuoteForm = () => {
   };
 
   return (
-    <section id="contact" className="container" style={{ margin: '6rem auto' }}>
+    <section id="contact" className="container" style={{ margin: '6rem auto', direction: 'rtl' }}>
       <div className="glass-panel" style={{ maxWidth: '750px', margin: '0 auto', padding: '3rem' }}>
         
         {/* הכותרת והטקסט שהעתקנו מהתמונה */}
@@ -79,30 +79,64 @@ const QuoteForm = () => {
           style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
           onSubmit={handleSubmit}
         >
-          {/* שורה 1 */}
+          {/* שורה 1 - שם מלא וטלפון */}
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <input type="text" name="שם_מלא" placeholder="שם ומשפחה" style={{...inputStyle, flex: '1 1 250px'}} required />
-            <input type="tel" name="טלפון" placeholder="מספר טלפון" style={{...inputStyle, flex: '1 1 250px'}} required />
+            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={labelStyle}>שם מלא</label>
+              <input type="text" name="שם_מלא" placeholder="ישראל ישראלי" style={inputStyle} required />
+            </div>
+            
+            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={labelStyle}>טלפון</label>
+              <input type="tel" name="טלפון" placeholder="050-0000000" style={inputStyle} required />
+            </div>
           </div>
           
-          {/* שורה 2 */}
+          {/* שורה 2 - תאריך ושעות */}
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <input type="date" name="תאריך_אירוע" placeholder="תאריך האירוע" style={{...inputStyle, flex: '1 1 250px'}} />
-            <input type="text" name="מיקום" placeholder="עיר/ אולם" style={{...inputStyle, flex: '1 1 250px'}} />
+            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={labelStyle}>תאריך האירוע</label>
+              <input type="date" name="תאריך_אירוע" placeholder="dd/mm/yyyy" style={inputStyle} />
+            </div>
+            
+            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={labelStyle}>שעות (לדוגמא: 20:00-01:00)</label>
+              <input type="text" name="שעות" placeholder="הכנס שעות" style={inputStyle} />
+            </div>
+          </div>
+
+          {/* שורה 3 - מיקום וסוג אירוע */}
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={labelStyle}>מיקום</label>
+              <input type="text" name="מיקום" placeholder="עיר / אולם" style={inputStyle} />
+            </div>
+
+            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={labelStyle}>סוג האירוע</label>
+              <input type="text" name="סוג_אירוע" placeholder="חתונה / יום הולדת..." style={inputStyle} />
+            </div>
           </div>
           
-          {/* שורה 3 */}
+          {/* שורה 4 - כמות מוזמנים */}
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <input type="number" name="כמות_מוזמנים" placeholder="כמות מוזמנים" style={{...inputStyle, flex: '1 1 250px'}} />
-            <input type="text" name="סוג_אירוע" placeholder="סוג האירוע (חתונה, בר/בת מצווה, יום הולדת...)" style={{...inputStyle, flex: '1 1 250px'}} />
+            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={labelStyle}>כמות מוזמנים</label>
+              <input type="number" name="כמות_מוזמנים" placeholder="100" style={inputStyle} />
+            </div>
+            {/* השארנו מקום ריק לצד כמות מוזמנים כדי לשמור על גריד סימטרי ויפה */}
+            <div style={{ flex: '1 1 250px' }} />
           </div>
           
-          {/* שורה 4 - הערות */}
-          <textarea 
-            name="הערות" 
-            placeholder="הערות / בקשות מיוחדות..." 
-            style={{...inputStyle, minHeight: '120px', resize: 'vertical'}}
-          ></textarea>
+          {/* שורה 5 - הערות */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <label style={labelStyle}>הערות</label>
+            <textarea 
+              name="הערות" 
+              placeholder="הערות / בקשות מיוחדות..." 
+              style={{...inputStyle, minHeight: '120px', resize: 'vertical'}}
+            ></textarea>
+          </div>
           
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem', perspective: '1000px' }}>
             <button 
@@ -149,6 +183,15 @@ const QuoteForm = () => {
   );
 };
 
+// סגנון חדש לכותרות מעל השדות
+const labelStyle = {
+  fontSize: '0.9rem',
+  color: '#ffffff',
+  fontWeight: '600',
+  textAlign: 'right',
+  paddingRight: '4px'
+};
+
 const inputStyle = {
   width: '100%',
   padding: '1rem',
@@ -159,6 +202,8 @@ const inputStyle = {
   fontFamily: 'var(--font-body)',
   fontSize: '1rem',
   outline: 'none',
+  textAlign: 'right', // פותר את הצמדת הפלייסהולדר והספרות לימין
+  direction: 'rtl'    // דואג לסימני פיסוק ותווים מיוחדים בעברית
 };
 
 export default QuoteForm;
