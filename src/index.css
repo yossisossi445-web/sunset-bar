@@ -48,7 +48,7 @@ a, button {
   z-index: 10;
   
   /* השארנו את מעבר השקיפות קצר כדי שהצבע השחור המלא יתחיל מהר */
-  background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 5vh);
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 6vh);
   
   /* כאן הפתרון: הגדלנו משמעותית את הריווח העליון. 
      זה "מותח" את הרקע השחור כלפי מעלה ביחס לתוכן */
