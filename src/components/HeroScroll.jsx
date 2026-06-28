@@ -229,7 +229,7 @@ const HeroScroll = () => {
               alignItems: "center",
               justifyContent: "center",
               gap: "12px",
-              padding: "11px 22px",
+              padding: "10px 22px",
               background:
                 "linear-gradient(180deg,#f7e0c8 0%,#efc79f 46%,#e0ad81 100%)",
               border: "1px solid rgba(255,250,244,.95)",
