@@ -3,161 +3,162 @@ import gsap from 'gsap';
 
 const QuoteForm = () => {
   const buttonRef = useRef(null);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  // הוספנו ניהול מצב כדי לדעת אם הטופס נשלח בהצלחה
+  const [status, setStatus] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleMouseMove = (e) => {
+    const btn = buttonRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    gsap.to(btn, {
+      x: x * 0.3,
+      y: y * 0.3,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  };
+
+  const handleMouseLeave = () => {
+    if (!buttonRef.current) return;
+    gsap.to(buttonRef.current, {
+      x: 0,
+      y: 0,
+      duration: 0.5,
+      ease: 'elastic.out(1, 0.3)'
+    });
+  };
+
+  // הפונקציה שאשכרה שולחת את הנתונים לאימייל שלכם
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    // איפוס של הודעת ה"תודה" אחרי 5 שניות
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
+    setStatus('sending'); // משנה את הכפתור ל"שולח..."
+    
+    const form = e.target;
+    const formData = new FormData(form);
 
-  const inputStyle = {
-    width: '100%',
-    padding: '12px 16px',
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    borderRadius: '8px',
-    color: '#fff',
-    fontSize: '1rem',
-    outline: 'none',
-    boxSizing: 'border-box',
-    textAlign: 'right', // מבטיח יישור לימין
-    fontFamily: 'inherit',
-    transition: 'border-color 0.3s ease, background-color 0.3s ease'
-  };
+    try {
+      const response = await fetch("https://formspree.io/f/xqeoabrw", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
 
-  const labelStyle = {
-    display: 'block',
-    marginBottom: '8px',
-    color: '#f7e6cf',
-    fontWeight: 600,
-    fontSize: '1.05rem',
-    textAlign: 'right'
-  };
-
-  const formGroupStyle = {
-    marginBottom: '1.5rem',
-    width: '100%'
+      if (response.ok) {
+        setStatus('success'); // משנה את הכפתור ל"נשלח בהצלחה"
+        form.reset(); // מנקה את השדות
+        setTimeout(() => setStatus(''), 5000); // מחזיר את הכפתור למצב רגיל אחרי 5 שניות
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus(''), 5000);
+      }
+    } catch (error) {
+      setStatus('error');
+      setTimeout(() => setStatus(''), 5000);
+    }
   };
 
   return (
-    <section id="contact" style={{ padding: '6rem 20px', display: 'flex', justifyContent: 'center' }}>
-      <div style={{
-        maxWidth: '600px',
-        width: '100%',
-        background: 'rgba(0, 0, 0, 0.4)',
-        backdropFilter: 'blur(16px)',
-        padding: '3rem 2rem',
-        borderRadius: '24px',
-        border: '1px solid rgba(251, 191, 36, 0.2)',
-        boxShadow: '0 15px 40px rgba(0,0,0,0.5)',
-        direction: 'rtl' // הפקודה הזו מסדרת את המספרים והפלייסחולדר לימין
-      }}>
-        <h2 style={{
-          textAlign: 'center',
-          fontSize: 'clamp(2rem, 5vw, 3rem)',
-          marginBottom: '2rem',
-          color: '#fff',
-          fontFamily: 'var(--font-heading)'
-        }}>
-          לקבלת <span style={{ color: '#ff9e5e' }}>הצעת מחיר</span>
+    <section id="contact" className="container" style={{ margin: '6rem auto' }}>
+      <div className="glass-panel" style={{ maxWidth: '750px', margin: '0 auto', padding: '3rem' }}>
+        
+        {/* הכותרת והטקסט שהעתקנו מהתמונה */}
+        <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '0.5rem' }}>
+          מחכים לחגוג <span className="text-gradient">איתכם!</span>
         </h2>
-
-        {!isSubmitted ? (
-          <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-            
-            <div style={formGroupStyle}>
-              <label style={labelStyle}>שם מלא</label>
-              <input type="text" required placeholder="ישראל ישראלי" style={inputStyle} dir="rtl" />
-            </div>
-
-            <div style={formGroupStyle}>
-              <label style={labelStyle}>מספר טלפון</label>
-              <input type="tel" required placeholder="050-000-0000" style={inputStyle} dir="rtl" />
-            </div>
-
-            <div style={formGroupStyle}>
-              <label style={labelStyle}>סוג האירוע</label>
-              <input type="text" required placeholder="חתונה, בר מצווה וכו׳" style={inputStyle} dir="rtl" />
-            </div>
-
-            {/* בלוק גמיש כדי להציג את התאריך והשעות אחד ליד השני */}
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <div style={{ ...formGroupStyle, flex: '1 1 200px' }}>
-                <label style={labelStyle}>תאריך</label>
-                <input type="date" required style={inputStyle} dir="rtl" />
-              </div>
-
-              <div style={{ ...formGroupStyle, flex: '1 1 200px' }}>
-                <label style={labelStyle}>שעות</label>
-                <input type="text" required placeholder="18:00 - 23:00" style={inputStyle} dir="rtl" />
-              </div>
-            </div>
-
-            <button
-              ref={buttonRef}
-              onMouseEnter={() => {
-                gsap.to(buttonRef.current, { scale: 1.02, duration: 0.2 });
-              }}
-              onMouseLeave={() => {
-                gsap.to(buttonRef.current, { scale: 1, duration: 0.2 });
-              }}
-              type="submit"
-              style={{
-                width: '100%',
-                padding: '14px',
-                marginTop: '1rem',
-                background: 'linear-gradient(180deg,#f7e0c8 0%,#efc79f 46%,#e0ad81 100%)',
-                color: '#70472c',
-                border: 'none',
-                borderRadius: '50px',
-                fontSize: '1.2rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                fontFamily: 'var(--font-heading)',
-                boxShadow: '0 4px 15px rgba(224, 173, 129, 0.3)'
-              }}
-            >
-              שלח בקשה
-            </button>
-          </form>
-        ) : (
-          <div style={{ textAlign: 'center', padding: '3rem 0' }}>
-            <div style={{
-              width: '80px', height: '80px', background: 'rgba(251, 191, 36, 0.1)', 
-              borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              margin: '0 auto 1.5rem auto'
-            }}>
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fcd34d" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-            <h3 style={{ color: '#fff', fontSize: '1.8rem', marginBottom: '0.5rem' }}>תודה רבה!</h3>
-            <p style={{ color: '#ccc', fontSize: '1.1rem' }}>הפרטים התקבלו, נחזור אליך בהקדם האפשרי.</p>
+        <p style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#ccc', fontSize: '1.2rem' }}>
+          השאירו פרטים ונחזור אליכם בהקדם עם הצעה מתוקה
+        </p>
+        
+        <form 
+          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
+          onSubmit={handleSubmit}
+        >
+          {/* שורה 1 */}
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <input type="text" name="שם_מלא" placeholder="שם ומשפחה" style={{...inputStyle, flex: '1 1 250px'}} required />
+            <input type="tel" name="טלפון" placeholder="מספר טלפון" style={{...inputStyle, flex: '1 1 250px'}} required />
           </div>
-        )}
+          
+          {/* שורה 2 */}
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <input type="date" name="תאריך_אירוע" placeholder="תאריך האירוע" style={{...inputStyle, flex: '1 1 250px'}} />
+            <input type="text" name="מיקום" placeholder="עיר/ אולם" style={{...inputStyle, flex: '1 1 250px'}} />
+          </div>
+          
+          {/* שורה 3 */}
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <input type="number" name="כמות_מוזמנים" placeholder="כמות מוזמנים" style={{...inputStyle, flex: '1 1 250px'}} />
+            <input type="text" name="סוג_אירוע" placeholder="סוג האירוע (חתונה, בר/בת מצווה, יום הולדת...)" style={{...inputStyle, flex: '1 1 250px'}} />
+          </div>
+          
+          {/* שורה 4 - הערות */}
+          <textarea 
+            name="הערות" 
+            placeholder="הערות / בקשות מיוחדות..." 
+            style={{...inputStyle, minHeight: '120px', resize: 'vertical'}}
+          ></textarea>
+          
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem', perspective: '1000px' }}>
+            <button 
+              ref={buttonRef}
+              type="submit" 
+              disabled={status === 'sending'}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                background: 'linear-gradient(45deg, var(--accent-amber), var(--accent-gold), var(--accent-amber))',
+                backgroundSize: '200% auto',
+                color: '#12090c',
+                border: 'none',
+                padding: '1rem 3rem',
+                fontSize: '1.2rem',
+                fontWeight: 800,
+                borderRadius: '50px',
+                cursor: status === 'sending' ? 'wait' : 'pointer', // משנה את סמן העכבר בזמן שליחה
+                fontFamily: 'var(--font-heading)',
+                transition: 'all 0.5s',
+                animation: 'gradientShift 5s ease infinite',
+                opacity: status === 'sending' ? 0.7 : 1
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundPosition = 'right center'; }}
+            >
+              {/* הטקסט בכפתור משתנה אוטומטית לפי המצב */}
+              {status === 'sending' ? 'שולח...' : 
+               status === 'success' ? 'נשלח בהצלחה! 🥂' : 
+               status === 'error' ? 'שגיאה בשליחה, נסו שוב' : 
+               'לשליחת הודעה'}
+            </button>
+          </div>
+        </form>
       </div>
-      
+
       <style>{`
-        /* הברקה כשלוחצים על התיבה */
-        input:focus {
-          border-color: #fcd34d !important;
-          background-color: rgba(255, 255, 255, 0.1) !important;
-        }
-        /* צבע שקוף לפלייסחולדרים */
-        input::placeholder {
-          color: rgba(255, 255, 255, 0.4);
-        }
-        /* מתאים את הסטייל של לוח השנה לדפדפנים */
-        input[type="date"]::-webkit-calendar-picker-indicator {
-          filter: invert(1);
-          opacity: 0.6;
-          cursor: pointer;
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
       `}</style>
     </section>
   );
+};
+
+const inputStyle = {
+  width: '100%',
+  padding: '1rem',
+  background: 'rgba(255,255,255,0.03)',
+  border: '1px solid var(--glass-border)',
+  borderRadius: '12px',
+  color: '#ffffff', // וידאתי שהטקסט יהיה לבן וקריא
+  fontFamily: 'var(--font-body)',
+  fontSize: '1rem',
+  outline: 'none',
 };
 
 export default QuoteForm;
