@@ -86,3 +86,11 @@ html.lenis {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+/* מונע מהדפדפן להפריע ל-Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
