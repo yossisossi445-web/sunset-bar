@@ -23,7 +23,7 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  cursor: none; /* For CustomCursor */
+  cursor: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a, button {
-  cursor: none; /* Ensure custom cursor works over links */
+  cursor: none;
 }
 
 .glass-panel {
@@ -43,7 +43,6 @@ a, button {
   border-radius: 24px;
 }
 
-/* Base styles for smooth transition */
 .content-wrapper {
   position: relative;
   z-index: 10;
@@ -52,7 +51,6 @@ a, button {
   padding-bottom: 5rem;
 }
 
-/* Utility Classes */
 .text-gradient {
   background: linear-gradient(45deg, var(--accent-amber), var(--accent-gold));
   -webkit-background-clip: text;
@@ -67,7 +65,7 @@ a, button {
 }
 
 /* Custom Scrollbar for Lenis */
-html.lenis {
+html.lenis, html.lenis body {
   height: auto;
 }
 
@@ -85,12 +83,4 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
-/* מונע מהדפדפן להפריע ל-Lenis */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
 }
